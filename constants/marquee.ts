@@ -1,0 +1,15 @@
+export const itemsmargue = [
+  { logo: '/images/html.svg', title: 'HTML' },
+  { logo: '/images/css.svg', title: 'CSS' },
+  { logo: '/images/javascript.svg', title: 'JavaScript' },
+  { logo: '/images/react.svg', title: 'React' },
+  { logo: '/images/node.svg', title: 'Node' },
+  { logo: '/images/routerdom.webp', title: 'Router Doom' },
+  { logo: '/images/tailwind.svg', title: 'Tailwind' },
+  { logo: '/images/nextjs.svg', title: 'NextJs' },
+  { logo: '/images/bootstrap.svg', title: 'Bootstrap' },
+  { logo: '/images/github.svg', title: 'Github' },
+  { logo: '/images/redux.svg', title: 'Redux' },
+  { logo: '/images/express.svg', title: 'Express' },
+  { logo: '/images/mongodb.svg', title: 'MongoDB' },
+]
