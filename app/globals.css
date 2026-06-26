@@ -1,26 +1,86 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+.non-scrole::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth;
+}
+
+.navtrantition {
+  -webkit-animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
+
+@keyframes borderAnimation {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  25% {
+    clip-path: inset(0 0 0 0);
+  }
+  75% {
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+:root {
+  --line2-color: #d4d4d4;
+  --line1-color: #a3a3a3;
+  --area1-color: rgba(212, 212, 212, 0.3);
+  --area2-color: rgba(229, 229, 229, 0.3);
+}
+
+.dark {
+  --line1-color: #67e8f9;
+  --line2-color: #e879f9;
+  --area1-color: rgba(38, 38, 38, 0.3);
+  --area2-color: rgba(64, 64, 64, 0.3);
+}
+
+svg .area1,
+svg .area2 {
+  transition: fill 0.3s ease-in-out;
+}
+
+svg .line1,
+svg .line2 {
+  transition: stroke 0.3s ease-in-out;
+}
+
+.border-theme-light {
+  border-color: var(--line1-color);
+}
+
+.border-theme-dark {
+  border-color: var(--line2-color);
 }
