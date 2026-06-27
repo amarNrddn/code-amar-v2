@@ -8,9 +8,9 @@ const TogleTheme = () => {
   const { theme, toggleTheme } = useTheme()
 
   return (
-    <button onClick={toggleTheme}>
+    <button onClick={toggleTheme} aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}>
       {theme === 'light' ? (
-        <CiLight className="md:text-white text-2xl font-bold" />
+        <CiLight className="text-2xl font-bold" />
       ) : (
         <MdDarkMode className="text-2xl font-bold" />
       )}

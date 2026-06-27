@@ -2,17 +2,20 @@
 
 import { TypeAnimation } from 'react-type-animation'
 import DotAnimation from './DotAnimation'
+import { useLanguage } from '@/context/LanguageProvider'
 
 const RunText = () => {
+  const { t } = useLanguage()
+
   return (
     <div className="flex justify-between items-center mb-3">
       <TypeAnimation
         sequence={[
-          `Hello Folks, I'm`,
+          t('runText.hello'),
           3000,
-          `Hello Folks, I'm Amar Nuruddin`,
+          t('runText.name'),
           3000,
-          `Hello Folks, I'm Software Engineer`,
+          t('runText.engineer'),
         ]}
         wrapper="span"
         speed={10}
