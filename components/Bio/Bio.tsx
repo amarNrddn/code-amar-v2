@@ -3,30 +3,29 @@
 import { DotFilledIcon } from '@radix-ui/react-icons'
 import { useTheme } from '@/context/ThemeProvider'
 import { textPrimaryDark, textLight } from '@/constants/styles'
-
-const bios = [
-  {
-    jobs: ['Frontend Developer', 'Backend Developer', 'Full Stack Developer'],
-    city: 'Jakarta',
-    about:
-      'Full-stack developer with 5+ years experience building web applications using JavaScript, Node.js, and React.',
-  },
-  {
-    jobs: ['UI/UX Designer'],
-    city: 'Bandung',
-    about:
-      'UI/UX designer focused on creating intuitive and accessible user interfaces for digital products.',
-  },
-  {
-    jobs: [],
-    city: 'Surabaya',
-    about:
-      'Backend engineer specializing in microservices architecture, API design, and cloud infrastructure.',
-  },
-]
+import { useLanguage } from '@/context/LanguageProvider'
 
 const Bio = () => {
   const { theme } = useTheme()
+  const { t } = useLanguage()
+
+  const bios = [
+    {
+      jobs: [t('bio.job1'), t('bio.job2'), t('bio.job3')],
+      city: t('bio.city1'),
+      about: t('bio.about1'),
+    },
+    {
+      jobs: [t('bio.job4')],
+      city: t('bio.city2'),
+      about: t('bio.about2'),
+    },
+    {
+      jobs: [],
+      city: t('bio.city3'),
+      about: t('bio.about3'),
+    },
+  ]
 
   return (
     <div>
@@ -41,7 +40,7 @@ const Bio = () => {
           <div className="flex items-center gap-2 text-gray-500">
             <DotFilledIcon className="w-4 h-4" />
             <p className="text-base">
-              Based {item.city} <span className="text-xs font-semibold">ID</span>
+              {t('bio.based')} {item.city} <span className="text-xs font-medium">ID</span>
             </p>
           </div>
           <p
