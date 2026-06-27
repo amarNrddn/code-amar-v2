@@ -1,8 +1,8 @@
-import { supabase } from './supabase'
+import { supabaseAdmin } from './supabase-admin'
 import { Blog, Project } from './types'
 
 export async function getAllBlogs(): Promise<any[]> {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from('Blogs')
     .select('id, title, thumbnail, createdAt, content, slug')
     .order('createdAt', { ascending: false })
@@ -15,7 +15,7 @@ export async function getAllBlogs(): Promise<any[]> {
 }
 
 export async function getBlogBySlug(slug: string): Promise<Blog | null> {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from('Blogs')
     .select('*')
     .eq('slug', slug)
@@ -29,7 +29,7 @@ export async function getBlogBySlug(slug: string): Promise<Blog | null> {
 }
 
 export async function getAllProjects(): Promise<any[]> {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from('Projects')
     .select('*, Techstacks(*), Features(*)')
     .order('createdAt', { ascending: false })
@@ -49,7 +49,7 @@ export async function getAllProjects(): Promise<any[]> {
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from('Projects')
     .select('*, Techstacks(*), Features(*)')
     .eq('slug', slug)
@@ -70,7 +70,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
 }
 
 export async function createFeature(title: string, description: string, projectId: string) {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from('Features')
     .insert([{ title, description, projectId }])
     .select()
@@ -81,7 +81,7 @@ export async function createFeature(title: string, description: string, projectI
 }
 
 export async function createTechstack(techstack: string, projectId: string) {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from('Techstacks')
     .insert([{ techstack, projectId }])
     .select()
@@ -92,7 +92,7 @@ export async function createTechstack(techstack: string, projectId: string) {
 }
 
 export async function createProject(project: Partial<Project>) {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from('Projects')
     .insert([project])
     .select()
@@ -103,7 +103,7 @@ export async function createProject(project: Partial<Project>) {
 }
 
 export async function createBlog(blog: Partial<Blog>) {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from('Blogs')
     .insert([blog])
     .select()
@@ -111,6 +111,66 @@ export async function createBlog(blog: Partial<Blog>) {
 
   if (error) throw error
   return data
+}
+
+export async function updateBlog(slug: string, blog: Partial<Blog>) {
+  const { data, error } = await supabaseAdmin
+    .from('Blogs')
+    .update(blog)
+    .eq('slug', slug)
+    .select()
+    .single()
+
+  if (error) throw error
+  return data
+}
+
+export async function deleteBlog(slug: string) {
+  const { error } = await supabaseAdmin
+    .from('Blogs')
+    .delete()
+    .eq('slug', slug)
+
+  if (error) throw error
+}
+
+export async function updateProject(slug: string, project: Partial<Project>) {
+  const { data, error } = await supabaseAdmin
+    .from('Projects')
+    .update(project)
+    .eq('slug', slug)
+    .select()
+    .single()
+
+  if (error) throw error
+  return data
+}
+
+export async function deleteProject(slug: string) {
+  const { error } = await supabaseAdmin
+    .from('Projects')
+    .delete()
+    .eq('slug', slug)
+
+  if (error) throw error
+}
+
+export async function deleteFeature(id: string) {
+  const { error } = await supabaseAdmin
+    .from('Features')
+    .delete()
+    .eq('id', id)
+
+  if (error) throw error
+}
+
+export async function deleteTechstack(id: string) {
+  const { error } = await supabaseAdmin
+    .from('Techstacks')
+    .delete()
+    .eq('id', id)
+
+  if (error) throw error
 }
 
 

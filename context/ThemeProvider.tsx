@@ -27,6 +27,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const next = theme === 'light' ? 'dark' : 'light'
     setTheme(next)
     localStorage.setItem('theme', next)
+    document.cookie = `theme=${next};path=/;max-age=31536000`
     document.documentElement.classList.toggle('dark', next === 'dark')
   }
 

@@ -7,7 +7,7 @@ const translations: Record<string, Record<string, string>> = {
     'nav.dashboard': 'Dashboard',
     'nav.hire': 'Hire me.',
     'nav.name': 'Amar Nuruddin',
-    'nav.username': '@marzkyy',
+    'nav.username': '@amarnrddn',
 
     'home.articles': 'Latest Articles',
     'home.articlesFrom': 'Latest articles from dev.to',
@@ -107,7 +107,7 @@ const translations: Record<string, Record<string, string>> = {
     'nav.dashboard': 'Dasbor',
     'nav.hire': 'Hire me.',
     'nav.name': 'Amar Nuruddin',
-    'nav.username': '@marzkyy',
+    'nav.username': '@amarnrddn',
 
     'home.articles': 'Artikel Terbaru',
     'home.articlesFrom': 'Artikel terbaru dari dev.to',
