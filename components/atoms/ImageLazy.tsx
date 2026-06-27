@@ -6,12 +6,14 @@ import 'react-lazy-load-image-component/src/effects/blur.css'
 interface ImageLazyProps {
   image: string
   className?: string
+  alt?: string
 }
 
-const ImageLazy = ({ image, className = '' }: ImageLazyProps) => {
+const ImageLazy = ({ image, className = '', alt = '' }: ImageLazyProps) => {
   return (
     <LazyLoadImage
       src={image}
+      alt={alt}
       className={className}
       effect="blur"
       wrapperProps={{

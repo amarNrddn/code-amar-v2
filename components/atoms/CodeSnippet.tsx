@@ -24,6 +24,7 @@ const CodeSnippet = ({ code, language = 'javascript' }: CodeSnippetProps) => {
       <button
         onClick={handleCopy}
         className="absolute top-2 right-2 p-2 rounded-md bg-gray-700 hover:bg-gray-600 text-white transition-colors z-10"
+        aria-label={copied ? 'Copied' : 'Copy code'}
       >
         {copied ? <IoCheckmark className="text-green-400" /> : <IoCopyOutline />}
       </button>
