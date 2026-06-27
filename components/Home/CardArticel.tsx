@@ -32,6 +32,7 @@ const CardArticel = () => {
           <ImageLazy
             image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${item.thumbnail}`}
             className="w-full h-40 object-cover"
+            alt={item.title}
           />
           <p className="text-sm p-2 font-medium dark:text-white text-black line-clamp-2">
             {item.title}

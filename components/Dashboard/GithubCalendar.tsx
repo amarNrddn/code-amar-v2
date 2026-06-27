@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react'
 import { configs } from '@/constants/configs'
+import { useLanguage } from '@/context/LanguageProvider'
 
 const GithubCalendar = () => {
+  const { t } = useLanguage()
   const [totalContributions, setTotalContributions] = useState(0)
   const [follower, setFollower] = useState(0)
   const [repo, setRepo] = useState(0)
@@ -69,21 +71,21 @@ const GithubCalendar = () => {
   return (
     <div className="grid grid-cols-2 md:flex gap-4 mb-5 mt-4">
       <div className="shadow-lg rounded-lg py-2 pl-3 md:w-1/5">
-        <p className="text-sm">Total Contributions</p>
-        <p className="text-xl font-semibold text-green-500">{totalContributions}</p>
+        <p className="text-sm">{t('github.total')}</p>
+        <p className="text-xl font-medium text-green-500">{totalContributions}</p>
       </div>
       <div className="shadow-lg rounded-lg py-2 pl-3 md:w-1/5">
-        <p className="text-sm">Repositories</p>
-        <p className="text-xl font-semibold text-green-500">{repo}</p>
+        <p className="text-sm">{t('github.repos')}</p>
+        <p className="text-xl font-medium text-green-500">{repo}</p>
       </div>
       <div className="shadow-lg rounded-lg py-2 pl-3 md:w-1/5">
-        <p className="text-sm">Followers</p>
-        <p className="text-xl font-semibold text-green-500">{follower}</p>
+        <p className="text-sm">{t('github.followers')}</p>
+        <p className="text-xl font-medium text-green-500">{follower}</p>
       </div>
       <div className="shadow-lg rounded-lg py-2 pl-3 md:w-1/5">
-        <p className="text-sm">Average</p>
-        <p className="text-xl font-semibold text-green-500">
-          1<span className="text-gray-500 text-sm">/day</span>
+        <p className="text-sm">{t('github.average')}</p>
+        <p className="text-xl font-medium text-green-500">
+          1<span className="text-gray-500 text-sm">{t('github.perDay')}</span>
         </p>
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { useLanguage } from '@/context/LanguageProvider'
 
 interface NavItem {
   icon: React.ReactNode
@@ -18,6 +19,7 @@ interface ItemNavDesktopProps {
 
 const ItemNavDesktop = ({ isActive, navItems, theme, hovered }: ItemNavDesktopProps) => {
   const router = useRouter()
+  const { t } = useLanguage()
 
   const styleNav = (item: NavItem) => {
     const isActiveItem = isActive === item.path
@@ -30,7 +32,7 @@ const ItemNavDesktop = ({ isActive, navItems, theme, hovered }: ItemNavDesktopPr
 
     const lightThemeItemStyle = hovered
       ? isActiveItem
-        ? 'px-2 py-1 bg-gray-200 pl-3 rounded-md text-gray-500'
+        ? 'px-2 py-1 bg-gray-200 pl-3 rounded-md text-gray-700'
         : ''
       : ''
 
@@ -67,12 +69,17 @@ const ItemNavDesktop = ({ isActive, navItems, theme, hovered }: ItemNavDesktopPr
     <ul className="space-y-4">
       {navItems.map((item, i) => {
         const { itemStyle, hoverStyle, iconStyle } = styleNav(item)
+        const key = item.navigation.toLowerCase()
 
         return (
           <li
             key={i}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') router.push(item.path) }}
             className={`flex items-center text-gray-500 space-x-4 cursor-pointer transition-all duration-300 ease-in-out ${itemStyle} ${hoverStyle}`}
             onClick={() => router.push(item.path)}
+            aria-label={t('nav.' + key)}
           >
             <span className={`text-lg font-bold ${iconStyle}`}>
               {item.icon}
@@ -84,7 +91,7 @@ const ItemNavDesktop = ({ isActive, navItems, theme, hovered }: ItemNavDesktopPr
               transition={{ duration: 0.5, ease: 'easeInOut' }}
               className="whitespace-nowrap"
             >
-              {item.navigation}
+              {t('nav.' + key)}
             </motion.span>
           </li>
         )
