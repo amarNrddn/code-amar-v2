@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub } from 'react-icons/fa'
 import { TiFlowMerge } from 'react-icons/ti'
@@ -9,9 +10,17 @@ import Border from '@/components/atoms/Border'
 import GithubCalendar from '@/components/Dashboard/GithubCalendar'
 import Roadmap from '@/components/Dashboard/Roadmap'
 import { useLanguage } from '@/context/LanguageProvider'
+import { useTheme } from '@/context/ThemeProvider'
 
 export default function Dashboard() {
   const { t } = useLanguage()
+  const { theme } = useTheme()
+  const [chartLoaded, setChartLoaded] = useState(false)
+  const imgRef = useRef<HTMLImageElement>(null)
+
+  useEffect(() => {
+    if (imgRef.current?.complete) setChartLoaded(true)
+  }, [])
 
   return (
     <motion.div
@@ -48,11 +57,21 @@ export default function Dashboard() {
       </div>
 
       <GithubCalendar />
-      <img
-        className="w-full"
-        src="https://ghchart.rshah.org/amarNrddn"
-        alt={t('dashboard.chartAlt')}
-      />
+      <div className="relative w-full min-h-[128px]">
+        {!chartLoaded && (
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+            <div className={`w-8 h-8 border-2 border-t-transparent rounded-full animate-spin ${theme === 'dark' ? 'border-white' : 'border-gray-900'}`} />
+          </div>
+        )}
+        <img
+          ref={imgRef}
+          className={`w-full ${chartLoaded ? '' : 'opacity-0'} transition-opacity`}
+          src="https://ghchart.rshah.org/amarNrddn"
+          alt={t('dashboard.chartAlt')}
+          onLoad={() => setChartLoaded(true)}
+          onError={() => setChartLoaded(true)}
+        />
+      </div>
       <Border className="my-8" />
       <HeaderSection>
         <TiFlowMerge />
