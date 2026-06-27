@@ -4,6 +4,7 @@ import Link from 'next/link'
 import HeaderSection from '@/components/atoms/HeaderSection'
 import BorderDot from '@/components/atoms/BorderDot'
 import ImageLazy from '@/components/atoms/ImageLazy'
+import { useLanguage } from '@/context/LanguageProvider'
 
 interface BlogCard {
   id: string
@@ -29,16 +30,18 @@ const SkeletonCard = ({ featured = false }: { featured?: boolean }) => (
 )
 
 const Card = ({ blogs }: CardProps) => {
+  const { t } = useLanguage()
+
   return (
     <div className="w-full">
-      <HeaderSection>Welcome to my blog! Your Source for Expert Tips and Insights!</HeaderSection>
+      <HeaderSection>{t('blog.title')}</HeaderSection>
       <BorderDot className="my-5" />
 
       {blogs.length === 0 ? (
         <>
           <SkeletonCard featured />
           <HeaderSection className="mt-5 mb-3 md:mt-6 md:mb-4">
-            Related Articles
+            {t('blog.related')}
           </HeaderSection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {[1, 2, 3, 4].map((i) => (
@@ -52,6 +55,7 @@ const Card = ({ blogs }: CardProps) => {
             <ImageLazy
               image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${blogs[0].thumbnail}`}
               className="w-full rounded-md"
+              alt={blogs[0].title}
             />
             <h2 className="mt-2 font-bold dark:text-gray-400 text-gray-600">
               {blogs[0].title}
@@ -62,7 +66,7 @@ const Card = ({ blogs }: CardProps) => {
           </Link>
 
           <HeaderSection className="mt-5 mb-3 md:mt-6 md:mb-4">
-            Related Articles
+            {t('blog.related')}
           </HeaderSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -75,6 +79,7 @@ const Card = ({ blogs }: CardProps) => {
                 <ImageLazy
                   image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${item.thumbnail}`}
                   className="w-full h-40 object-cover rounded-md"
+                  alt={item.title}
                 />
                 <h2 className="mt-2 font-bold hover:text-emerald-500 line-clamp-2 dark:text-gray-400 text-gray-600">
                   {item.title}

@@ -5,6 +5,7 @@ import { Project } from '@/lib/types'
 import HeaderSection from '@/components/atoms/HeaderSection'
 import BorderDot from '@/components/atoms/BorderDot'
 import ImageLazy from '@/components/atoms/ImageLazy'
+import { useLanguage } from '@/context/LanguageProvider'
 
 interface CardProps {
   projects: Project[]
@@ -27,9 +28,11 @@ const SkeletonCard = () => (
 )
 
 const Card = ({ projects }: CardProps) => {
+  const { t } = useLanguage()
+
   return (
     <div className="w-full">
-      <HeaderSection>My Projects</HeaderSection>
+      <HeaderSection>{t('project.title')}</HeaderSection>
       <BorderDot className="my-5" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -45,6 +48,7 @@ const Card = ({ projects }: CardProps) => {
                   <ImageLazy
                     image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${item.thumbnail}`}
                     className="w-full h-48 object-cover"
+                    alt={item.title}
                   />
                 )}
                 <div className="p-4">

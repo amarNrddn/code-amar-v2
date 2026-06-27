@@ -4,7 +4,9 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { TbRosetteDiscountCheckFilled } from 'react-icons/tb'
 import TogleTheme from '@/components/atoms/TogleTheme'
+import TogleLanguage from '@/components/atoms/TogleLanguage'
 import { useTheme } from '@/context/ThemeProvider'
+import { useLanguage } from '@/context/LanguageProvider'
 import { themeDark } from '@/constants/styles'
 
 interface ProfileSidebarProps {
@@ -13,6 +15,7 @@ interface ProfileSidebarProps {
 
 const ProfileSidebar = ({ hovered }: ProfileSidebarProps) => {
   const { theme } = useTheme()
+  const { t } = useLanguage()
 
   if (!hovered) {
     return (
@@ -46,7 +49,7 @@ const ProfileSidebar = ({ hovered }: ProfileSidebarProps) => {
       <div className="pl-4 flex items-center absolute left-[-4px] top-[-3px]">
         <div className="mt-4 max-w-[100px] px-2 py-1 flex items-center gap-1 border-2 rounded-xl">
           <div className="w-2 h-2 bg-green-600 rounded-full animate-pulseDot" />
-          <p className="text-xs">Hire me.</p>
+          <p className="text-xs">{t('nav.hire')}</p>
         </div>
       </div>
       <motion.div
@@ -57,8 +60,9 @@ const ProfileSidebar = ({ hovered }: ProfileSidebarProps) => {
           initial={{ scale: 0.5 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="absolute right-5 top-10"
+          className={`absolute right-2 top-[15px] flex items-center gap-1 px-2 py-1 rounded-full ${theme === 'dark' ? 'bg-black/50' : 'bg-white/80'}`}
         >
+          <TogleLanguage />
           <TogleTheme />
         </motion.div>
 
@@ -76,10 +80,10 @@ const ProfileSidebar = ({ hovered }: ProfileSidebarProps) => {
           />
         </motion.div>
         <div className="mt-2 flex items-center">
-          <span className="whitespace-nowrap text-lg font-semibold">Amar Nuruddin</span>
+          <span className="whitespace-nowrap text-lg font-medium">{t('nav.name')}</span>
           <TbRosetteDiscountCheckFilled className="text-cyan-500 text-2xl ml-1" />
         </div>
-        <p className="text-sm text-gray-600">@marzkyy</p>
+        <p className="text-sm text-gray-600">{t('nav.username')}</p>
       </motion.div>
     </div>
   )
