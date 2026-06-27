@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub } from 'react-icons/fa'
 import { TiFlowMerge } from 'react-icons/ti'
@@ -9,17 +8,10 @@ import BorderDot from '@/components/atoms/BorderDot'
 import Border from '@/components/atoms/Border'
 import GithubCalendar from '@/components/Dashboard/GithubCalendar'
 import Roadmap from '@/components/Dashboard/Roadmap'
-import Loading from '@/components/atoms/Loading'
+import { useLanguage } from '@/context/LanguageProvider'
 
 export default function Dashboard() {
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 300)
-    return () => clearTimeout(timer)
-  }, [])
-
-  if (loading) return <Loading />
+  const { t } = useLanguage()
 
   return (
     <motion.div
@@ -35,23 +27,23 @@ export default function Dashboard() {
         },
       }}
     >
-      <HeaderSection>Dashboard</HeaderSection>
-      <p className="mt-5 text-gray-500">This is my personal dashboard GitHub and Roadmap</p>
+      <HeaderSection>{t('dashboard.title')}</HeaderSection>
+      <p className="mt-5 text-gray-500">{t('dashboard.desc')}</p>
       <BorderDot className="my-6" />
       <HeaderSection>
         <FaGithub />
-        Contributions
+        {t('dashboard.contributions')}
       </HeaderSection>
 
       <div className="my-3 md:flex md:justify-between">
-        <p className="text-gray-500">My contributions from last year on github.</p>
+        <p className="text-gray-500">{t('dashboard.contributionsDesc')}</p>
         <a
           className="text-gray-500"
           href="https://github.com/amarNrddn"
           target="_blank"
           rel="noreferrer"
         >
-          @codeamar
+          {t('dashboard.codeamar')}
         </a>
       </div>
 
@@ -59,17 +51,14 @@ export default function Dashboard() {
       <img
         className="w-full"
         src="https://ghchart.rshah.org/amarNrddn"
-        alt="Name Your Github chart"
+        alt={t('dashboard.chartAlt')}
       />
       <Border className="my-8" />
       <HeaderSection>
         <TiFlowMerge />
-        Roadmap
+        {t('dashboard.roadmap')}
       </HeaderSection>
-      <p className="my-4 text-gray-500">
-        Recommended learning paths and free course playlists based on what I&apos;ve learned are
-        suitable for beginners to intermediates.
-      </p>
+      <p className="my-4 text-gray-500">{t('dashboard.roadmapDesc')}</p>
 
       <Roadmap />
     </motion.div>

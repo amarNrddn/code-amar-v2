@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import HeaderSection from '@/components/atoms/HeaderSection'
 import BorderDot from '@/components/atoms/BorderDot'
@@ -10,17 +9,10 @@ import { FaCode } from 'react-icons/fa'
 import Story from '@/components/About/Story'
 import MarqueeElement from '@/components/About/MarqueeElement'
 import SocialMedia from '@/components/About/SocialMedia'
-import Loading from '@/components/atoms/Loading'
+import { useLanguage } from '@/context/LanguageProvider'
 
 export default function About() {
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 300)
-    return () => clearTimeout(timer)
-  }, [])
-
-  if (loading) return <Loading />
+  const { t } = useLanguage()
 
   return (
     <motion.div
@@ -32,23 +24,23 @@ export default function About() {
         scale: { type: 'spring', stiffness: 300, damping: 20 },
       }}
     >
-      <HeaderSection>About</HeaderSection>
-      <p className="mt-5 text-gray-500">A short story of me</p>
+      <HeaderSection>{t('about.title')}</HeaderSection>
+      <p className="mt-5 text-gray-500">{t('about.desc')}</p>
       <BorderDot className="my-6" />
       <Story />
       <Border className="my-6" />
       <HeaderSection>
         <FaCode />
-        Skills
+        {t('about.skills')}
       </HeaderSection>
-      <p className="my-4 text-gray-500">My coding skills</p>
+      <p className="my-4 text-gray-500">{t('about.skillsDesc')}</p>
       <MarqueeElement />
       <Border className="my-6" />
       <HeaderSection>
         <IoShareSocialSharp />
-        Media
+        {t('about.media')}
       </HeaderSection>
-      <p className="my-4">I am active on social media</p>
+      <p className="my-4">{t('about.mediaDesc')}</p>
       <SocialMedia />
     </motion.div>
   )

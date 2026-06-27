@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, Suspense, useState } from 'react'
+import { useEffect, useRef, Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import { LuCalendarHeart } from 'react-icons/lu'
@@ -9,9 +9,9 @@ import Border from '@/components/atoms/Border'
 import Bio from '@/components/Bio/Bio'
 import RunText from '@/components/atoms/RunText'
 import LoadingCard from '@/components/atoms/LoadingCard'
-import Loading from '@/components/atoms/Loading'
 import ButtonThemeVsCode from '@/components/atoms/ButtonThemeVsCode'
 import HeaderSection from '@/components/atoms/HeaderSection'
+import { useLanguage } from '@/context/LanguageProvider'
 
 const CardArticel = dynamic(() => import('@/components/Home/CardArticel'), {
   loading: () => <LoadingCard />,
@@ -22,13 +22,8 @@ const CardService = dynamic(() => import('@/components/CardServices/CardService'
 })
 
 export default function Home() {
-  const [loading, setLoading] = useState(true)
+  const { t } = useLanguage()
   const scrollContainerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 300)
-    return () => clearTimeout(timer)
-  }, [])
 
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current
@@ -61,8 +56,6 @@ export default function Home() {
     }
   }, [])
 
-  if (loading) return <Loading />
-
   return (
     <motion.div
       className="mt-4 md:mt-12 pb-10"
@@ -84,10 +77,10 @@ export default function Home() {
         <div>
           <HeaderSection>
             <LuCalendarHeart />
-            <p>Latest Articles</p>
+            <p>{t('home.articles')}</p>
           </HeaderSection>
           <div className="mt-4 md:flex md:justify-between md:items-center">
-            <p className="text-md text-gray-500">Latest articles from dev.to</p>
+            <p className="text-md text-gray-500">{t('home.articlesFrom')}</p>
             <ButtonThemeVsCode />
           </div>
         </div>
@@ -105,9 +98,9 @@ export default function Home() {
         <div className="mb-5">
           <HeaderSection>
             <RiServiceFill />
-            Services
+            {t('home.services')}
           </HeaderSection>
-          <p className="text-gray-500 mt-2">I can deliver the following services</p>
+          <p className="text-gray-500 mt-2">{t('home.servicesDesc')}</p>
         </div>
         <Suspense fallback={<LoadingCard />}>
           <CardService />
