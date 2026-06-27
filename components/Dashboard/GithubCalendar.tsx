@@ -1,76 +1,91 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-
-interface GitHubStats {
-  totalCommits: number
-  totalPRs: number
-  totalIssues: number
-  totalRepos: number
-  followers: number
-  repos: number
-}
+import { configs } from '@/constants/configs'
 
 const GithubCalendar = () => {
-  const [stats, setStats] = useState<GitHubStats | null>(null)
-  const username = 'amarNrddn'
+  const [totalContributions, setTotalContributions] = useState(0)
+  const [follower, setFollower] = useState(0)
+  const [repo, setRepo] = useState(0)
+
+  const getActivity = async () => {
+    const startOfYear = new Date(new Date().getFullYear(), 0, 1).toISOString()
+    const query = `
+      query {
+        user(login: "amarNrddn") {
+          contributionsCollection(from: "${startOfYear}", to: "${new Date().toISOString()}") {
+            totalCommitContributions
+            totalPullRequestContributions
+            totalIssueContributions
+            totalRepositoryContributions
+          }
+        }
+      }
+    `
+
+    try {
+      const response = await fetch('https://api.github.com/graphql', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${configs.token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query }),
+      })
+      const data = await response.json()
+      const contributionsData = data.data.user.contributionsCollection
+      const total =
+        contributionsData.totalCommitContributions +
+        contributionsData.totalPullRequestContributions +
+        contributionsData.totalIssueContributions +
+        contributionsData.totalRepositoryContributions
+
+      setTotalContributions(total)
+    } catch (error) {
+      console.error('Error fetching activity data:', error)
+    }
+  }
+
+  const getProfile = async () => {
+    try {
+      const response = await fetch('https://api.github.com/users/amarNrddn', {
+        headers: {
+          Authorization: `Bearer ${configs.token}`,
+        },
+      })
+      const data = await response.json()
+      setFollower(data.followers)
+      setRepo(data.public_repos)
+    } catch (error) {
+      console.error('Error fetching profile data:', error)
+    }
+  }
 
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const [userRes, eventsRes] = await Promise.all([
-          fetch(`https://api.github.com/users/${username}`),
-          fetch(`https://api.github.com/users/${username}/events?per_page=100`),
-        ])
-        const userData = await userRes.json()
-        const eventsData = await eventsRes.json()
-
-        const totalCommits = eventsData
-          .filter((e: any) => e.type === 'PushEvent')
-          .reduce((acc: number, e: any) => acc + (e.payload?.commits?.length || 0), 0)
-
-        setStats({
-          totalCommits,
-          totalPRs: userData.public_repos || 0,
-          totalIssues: 0,
-          totalRepos: userData.public_repos || 0,
-          followers: userData.followers || 0,
-          repos: userData.public_repos || 0,
-        })
-      } catch (error) {
-        console.error('Error fetching GitHub stats:', error)
-      }
-    }
-    fetchStats()
+    getActivity()
+    getProfile()
   }, [])
 
   return (
-    <div className="w-full">
-      <img
-        src={`https://ghchart.rshah.org/${username}`}
-        alt="GitHub contribution chart"
-        className="w-full rounded-md"
-      />
-
-      {stats && (
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-6">
-          {[
-            { label: 'Commits', value: stats.totalCommits },
-            { label: 'Repos', value: stats.repos },
-            { label: 'PRs', value: stats.totalPRs },
-            { label: 'Issues', value: stats.totalIssues },
-            { label: 'Followers', value: stats.followers },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="p-4 rounded-lg dark:bg-gray-900 bg-gray-100 text-center"
-            >
-              <p className="text-2xl font-bold">{item.value}</p>
-              <p className="text-sm text-gray-500">{item.label}</p>
-            </div>
-          ))}
-        </div>
-      )}
+    <div className="grid grid-cols-2 md:flex gap-4 mb-5 mt-4">
+      <div className="shadow-lg rounded-lg py-2 pl-3 md:w-1/5">
+        <p className="text-sm">Total Contributions</p>
+        <p className="text-xl font-semibold text-green-500">{totalContributions}</p>
+      </div>
+      <div className="shadow-lg rounded-lg py-2 pl-3 md:w-1/5">
+        <p className="text-sm">Repositories</p>
+        <p className="text-xl font-semibold text-green-500">{repo}</p>
+      </div>
+      <div className="shadow-lg rounded-lg py-2 pl-3 md:w-1/5">
+        <p className="text-sm">Followers</p>
+        <p className="text-xl font-semibold text-green-500">{follower}</p>
+      </div>
+      <div className="shadow-lg rounded-lg py-2 pl-3 md:w-1/5">
+        <p className="text-sm">Average</p>
+        <p className="text-xl font-semibold text-green-500">
+          1<span className="text-gray-500 text-sm">/day</span>
+        </p>
+      </div>
     </div>
   )
 }
