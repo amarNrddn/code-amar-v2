@@ -8,9 +8,7 @@ import TogleTheme from '@/components/atoms/TogleTheme'
 import TogleLanguage from '@/components/atoms/TogleLanguage'
 import { HamburgerMenuIcon, Cross2Icon } from '@radix-ui/react-icons'
 import { navItems } from '@/constants/itemsNav'
-import { useTheme } from '@/context/ThemeProvider'
 import { useLanguage } from '@/context/LanguageProvider'
-import { themeDark, themeLight } from '@/constants/styles'
 
 const NavMobile = () => {
   const router = useRouter()
@@ -19,7 +17,6 @@ const NavMobile = () => {
   const [active, setActive] = useState(pathname)
   const navRef = useRef<HTMLDivElement>(null)
 
-  const { theme } = useTheme()
   const { t } = useLanguage()
 
   useEffect(() => {
@@ -45,10 +42,8 @@ const NavMobile = () => {
     }
   }, [])
 
-  const containerNav = theme === 'dark' ? themeDark.className : themeLight.className
-
   return (
-    <nav className={`px-3 py-3 ${containerNav} md:hidden`}>
+    <nav className={`px-3 py-3 bg-white text-black dark:bg-black dark:text-white md:hidden`}>
       <div className="flex justify-between items-center">
         <Profile />
         <div className="flex items-center gap-3">
@@ -65,7 +60,7 @@ const NavMobile = () => {
 
         <div
           ref={navRef}
-          className={`${togle ? 'flex' : 'hidden'} px-3 z-50 bg-primary fixed top-16 left-0 my-2 min-w-full shadow-md navtrantition ${theme === 'dark' ? `${themeDark.className}` : `${themeLight.className}`}`}
+          className={`${togle ? 'flex' : 'hidden'} px-3 z-50 bg-white dark:bg-black fixed top-16 left-0 my-2 min-w-full shadow-md navtrantition`}
         >
           {togle && (
             <div className="w-full">
@@ -78,7 +73,7 @@ const NavMobile = () => {
                       role="button"
                       tabIndex={0}
                       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleNavigation(item.path) }}
-                      className={`text-lg flex items-center gap-2 mb-4 pl-2 ${theme === 'dark' ? active === item.path ? 'bg-darkPrimary py-2 rounded-md' : '' : active === item.path ? 'bg-gray-200 py-2 rounded-md' : ''}`}
+                      className={`text-lg flex items-center gap-2 mb-4 pl-2 ${active === item.path ? 'bg-gray-200 dark:bg-darkPrimary py-2 rounded-md' : ''}`}
                       onClick={() => handleNavigation(item.path)}
                       aria-label={t('nav.' + key)}
                     >

@@ -5,16 +5,13 @@ import Image from 'next/image'
 import { TbRosetteDiscountCheckFilled } from 'react-icons/tb'
 import TogleTheme from '@/components/atoms/TogleTheme'
 import TogleLanguage from '@/components/atoms/TogleLanguage'
-import { useTheme } from '@/context/ThemeProvider'
 import { useLanguage } from '@/context/LanguageProvider'
-import { themeDark } from '@/constants/styles'
 
 interface ProfileSidebarProps {
   hovered: boolean
 }
 
 const ProfileSidebar = ({ hovered }: ProfileSidebarProps) => {
-  const { theme } = useTheme()
   const { t } = useLanguage()
 
   if (!hovered) {
@@ -44,7 +41,7 @@ const ProfileSidebar = ({ hovered }: ProfileSidebarProps) => {
           top: '10px',
         }}
       >
-        <div className={`w-24 h-8 rounded-md ${theme === 'dark' ? themeDark.className : 'bg-white'}`} />
+        <div className="w-24 h-8 rounded-md bg-white dark:bg-black" />
       </div>
       <div className="pl-4 flex items-center absolute left-[-4px] top-[-3px]">
         <div className="mt-4 max-w-[100px] px-2 py-1 flex items-center gap-1 border-2 rounded-xl">
@@ -60,7 +57,7 @@ const ProfileSidebar = ({ hovered }: ProfileSidebarProps) => {
           initial={{ scale: 0.5 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
-          className={`absolute right-2 top-[15px] flex items-center gap-1 px-2 py-1 rounded-full ${theme === 'dark' ? 'bg-black/50' : 'bg-white/80'}`}
+          className="absolute right-2 top-[15px] flex items-center gap-1 px-2 py-1 rounded-full bg-white/80 dark:bg-black/50"
         >
           <TogleLanguage />
           <TogleTheme />

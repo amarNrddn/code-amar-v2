@@ -3,8 +3,6 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { useTheme } from '@/context/ThemeProvider'
-import { themeDark, themeLight } from '@/constants/styles'
 import { navItems } from '@/constants/itemsNav'
 import ProfileSidebar from './ProfileSidebar'
 import ItemNavDesktop from './ItemNavDesktop'
@@ -12,7 +10,6 @@ import './style.css'
 
 const NavDesktop = () => {
   const pathname = usePathname()
-  const { theme } = useTheme()
   const [hovered, setHovered] = useState(false)
   const [isActive, setIsActive] = useState(pathname)
 
@@ -20,8 +17,7 @@ const NavDesktop = () => {
     setIsActive(pathname)
   }, [pathname])
 
-  const borderDark = theme === 'dark' ? 'bg-gray-500' : 'bg-gray-200'
-  const containerNav = theme === 'dark' ? `${themeDark.className} sidebar-shadow` : `${themeLight.className}`
+  const containerNav = 'bg-white text-black dark:bg-black dark:text-white sidebar-shadow'
 
   return (
     <nav className="fixed left-0 hidden md:block">
@@ -36,10 +32,10 @@ const NavDesktop = () => {
       >
         <ProfileSidebar hovered={hovered} />
         <div className="px-4">
-          <div className={`w-full h-0.5 rounded-lg mt-2 ${borderDark}`} />
+          <div className="w-full h-0.5 rounded-lg mt-2 bg-gray-200 dark:bg-gray-500" />
         </div>
         <div className={`${hovered ? 'px-4' : 'px-3'} pt-4`}>
-          <ItemNavDesktop isActive={isActive} navItems={navItems} theme={theme} hovered={hovered} />
+          <ItemNavDesktop isActive={isActive} navItems={navItems} hovered={hovered} />
         </div>
       </motion.div>
     </nav>

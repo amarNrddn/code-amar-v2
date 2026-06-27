@@ -13,56 +13,38 @@ interface NavItem {
 interface ItemNavDesktopProps {
   isActive: string
   navItems: NavItem[]
-  theme: string
   hovered: boolean
 }
 
-const ItemNavDesktop = ({ isActive, navItems, theme, hovered }: ItemNavDesktopProps) => {
+const ItemNavDesktop = ({ isActive, navItems, hovered }: ItemNavDesktopProps) => {
   const router = useRouter()
   const { t } = useLanguage()
 
   const styleNav = (item: NavItem) => {
     const isActiveItem = isActive === item.path
 
-    const darkThemeItemStyle = hovered
-      ? isActiveItem
-        ? 'px-2 py-1 bg-[#444] pl-3 rounded-md text-white'
-        : 'text-gray-500'
+    const itemBase = isActiveItem
+      ? 'bg-gray-200 dark:bg-[#444] text-gray-700 dark:text-white'
+      : 'text-gray-500'
+
+    const itemStyle = hovered
+      ? `px-2 py-1 ${itemBase} pl-3 rounded-md`
       : ''
 
-    const lightThemeItemStyle = hovered
-      ? isActiveItem
-        ? 'px-2 py-1 bg-gray-200 pl-3 rounded-md text-gray-700'
-        : ''
+    const hoverStyle = hovered
+      ? 'px-2 py-1 hover:bg-gray-200 dark:hover:bg-[#444] hover:pl-3 rounded-md'
       : ''
 
-    const commonHoverStyle = hovered
-      ? 'px-2 py-1 hover:bg-[#444] hover:pl-3 rounded-md'
-      : ''
+    const iconStyle = (() => {
+      if (hovered) {
+        return isActiveItem ? 'text-black dark:text-white' : ''
+      }
+      return isActiveItem
+        ? 'p-2 bg-gray-200 dark:bg-[#333] text-black dark:text-white rounded-full'
+        : 'p-2 bg-gray-200 dark:bg-[#333] text-gray-500 rounded-full'
+    })()
 
-    const commonLightHoverStyle = hovered
-      ? 'px-2 py-1 hover:bg-gray-200 hover:pl-3 rounded-md'
-      : ''
-
-    const darkThemeIconStyle = hovered
-      ? isActiveItem
-        ? 'text-white'
-        : ''
-      : isActiveItem
-        ? 'p-2 bg-[#333] text-white rounded-full'
-        : 'p-2 bg-[#333] text-gray-500 rounded-full'
-
-    const lightThemeIconStyle = hovered
-      ? ''
-      : isActiveItem
-        ? 'p-2 bg-gray-200 text-black rounded-full'
-        : 'p-2 bg-gray-200 rounded-full'
-
-    return {
-      itemStyle: theme === 'dark' ? darkThemeItemStyle : lightThemeItemStyle,
-      hoverStyle: theme === 'dark' ? commonHoverStyle : commonLightHoverStyle,
-      iconStyle: theme === 'dark' ? darkThemeIconStyle : lightThemeIconStyle,
-    }
+    return { itemStyle, hoverStyle, iconStyle }
   }
 
   return (
