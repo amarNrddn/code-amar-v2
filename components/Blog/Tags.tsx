@@ -1,6 +1,10 @@
+'use client'
+
 import { Blog } from '@/lib/types'
+import { useLanguage } from '@/context/LanguageProvider'
 
 const Tags = ({ blog }: { blog: Blog }) => {
+  const { t } = useLanguage()
   let parsedTags: string[] = []
 
   if (Array.isArray(blog.tags)) {
@@ -13,7 +17,7 @@ const Tags = ({ blog }: { blog: Blog }) => {
 
   return (
     <div className="mt-10">
-      <h1 className="font-bold">Tags:</h1>
+      <h1 className="font-bold">{t('blogView.tags')}</h1>
       {parsedTags.length > 0 ? (
         <div className="py-2 px-2 flex flex-wrap">
           {parsedTags.map((tag, index) => (
@@ -26,7 +30,7 @@ const Tags = ({ blog }: { blog: Blog }) => {
           ))}
         </div>
       ) : (
-        <p>No tags available</p>
+        <p>{t('blogView.noTags')}</p>
       )}
     </div>
   )

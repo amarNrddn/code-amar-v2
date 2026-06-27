@@ -17,8 +17,10 @@ import Description from './Description'
 import Elucidation from './Elucidation'
 import Tags from './Tags'
 import Loading from '@/components/atoms/Loading'
+import { useLanguage } from '@/context/LanguageProvider'
 
 const ViewBlog = () => {
+  const { t } = useLanguage()
   const params = useParams()
   const router = useRouter()
   const [blog, setBlog] = useState<Blog | null>(null)
@@ -50,17 +52,18 @@ const ViewBlog = () => {
     >
       <button className="flex items-center gap-2" onClick={() => router.push('/blog')}>
         <FaRegArrowAltCircleLeft className="text-xl" />
-        <p className="text-gray-500">Back</p>
+        <p className="text-gray-500">{t('view.back')}</p>
       </button>
 
-      <h1 className="text-xl mt-9 font-semibold">{blog.title}</h1>
-      <p className="mt-5 text-sm text-gray-500 mb-4">Published on {formateDate}</p>
+      <h1 className="text-xl mt-9 font-medium">{blog.title}</h1>
+      <p className="mt-5 text-sm text-gray-500 mb-4">{t('blogView.publishedOn')}{formateDate}</p>
       <BorderDot className="mb-4" />
 
       <div className="w-full h-36 md:h-80 overflow-hidden relative">
         <ImageLazy
           image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${blog.thumbnail}`}
           className="w-full h-full rounded-md object-cover"
+          alt={blog.title}
         />
       </div>
 
