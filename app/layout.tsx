@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
+import { cookies } from 'next/headers'
 import './globals.css'
-import { ThemeProvider } from '@/context/ThemeProvider'
-import { LanguageProvider } from '@/context/LanguageProvider'
-import Navbar from '@/components/Navbar/Navbar'
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],
@@ -21,25 +19,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const cookieStore = cookies()
+  const themeCookie = cookieStore.get('theme')?.value
+  const isDark = themeCookie === 'dark'
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={isDark ? 'dark' : ''} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://gtgdlgnmlsmrqnnvqyxd.supabase.co" />
         <link rel="dns-prefetch" href="https://gtgdlgnmlsmrqnnvqyxd.supabase.co" />
       </head>
       <body className={roboto.className}>
-        <ThemeProvider>
-          <LanguageProvider>
-          <Navbar />
-          <main className="md:flex md:justify-center">
-            <div className="px-5 relative md:max-w-xl lg:max-w-3xl dark:bg-black dark:text-white bg-white text-black transition-colors duration-300 min-h-screen">
-              <div className="py-8">
-                {children}
-              </div>
-            </div>
-          </main>
-          </LanguageProvider>
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   )
