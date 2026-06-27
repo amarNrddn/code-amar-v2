@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import HeaderSection from '@/components/atoms/HeaderSection'
 import BorderDot from '@/components/atoms/BorderDot'
@@ -9,8 +10,18 @@ import { FaCode } from 'react-icons/fa'
 import Story from '@/components/About/Story'
 import MarqueeElement from '@/components/About/MarqueeElement'
 import SocialMedia from '@/components/About/SocialMedia'
+import Loading from '@/components/atoms/Loading'
 
 export default function About() {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 300)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (loading) return <Loading />
+
   return (
     <motion.div
       className="mt-4 md:mt-12 pb-10 w-full relative"

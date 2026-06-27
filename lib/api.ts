@@ -1,39 +1,5 @@
 import { supabase } from './supabase'
-import { Blog, Project, Bio as BioType } from './types'
-
-export async function getBios(): Promise<BioType[]> {
-  const { data, error } = await supabase
-    .from('Bios')
-    .select(`
-      id,
-      about,
-      city,
-      createdAt,
-      Abouts (
-        Jobs (
-          id,
-          job
-        )
-      )
-    `)
-
-  if (error) {
-    console.error('Supabase Bios error:', error)
-    return []
-  }
-
-  if (!data) return []
-
-  const transformed: BioType[] = data.map((bio: any) => ({
-    id: bio.id,
-    about: bio.about,
-    city: bio.city,
-    createdAt: bio.createdAt,
-    Jobs: bio.Abouts?.map((a: any) => a.Jobs).filter(Boolean) || [],
-  }))
-
-  return transformed
-}
+import { Blog, Project } from './types'
 
 export async function getAllBlogs(): Promise<any[]> {
   const { data, error } = await supabase
@@ -147,37 +113,4 @@ export async function createBlog(blog: Partial<Blog>) {
   return data
 }
 
-export async function createMyJobs(jobs: string[], city: string, about: string) {
-  const { data: bio, error: bioError } = await supabase
-    .from('Bios')
-    .insert([{ city, about }])
-    .select()
-    .single()
 
-  if (bioError || !bio) throw bioError
-
-  for (const jobName of jobs) {
-    let { data: job } = await supabase
-      .from('Jobs')
-      .select('id')
-      .eq('job', jobName)
-      .maybeSingle()
-
-    if (!job) {
-      const { data: newJob } = await supabase
-        .from('Jobs')
-        .insert([{ job: jobName }])
-        .select()
-        .single()
-      job = newJob
-    }
-
-    if (job) {
-      await supabase
-        .from('Abouts')
-        .insert([{ bioId: bio.id, jobId: job.id }])
-    }
-  }
-
-  return bio
-}

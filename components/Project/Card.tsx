@@ -1,12 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
 import { Project } from '@/lib/types'
 import HeaderSection from '@/components/atoms/HeaderSection'
 import BorderDot from '@/components/atoms/BorderDot'
 import ImageLazy from '@/components/atoms/ImageLazy'
+
+interface CardProps {
+  projects: Project[]
+}
 
 const SkeletonCard = () => (
   <div className="rounded-md overflow-hidden dark:bg-gray-900 bg-gray-100">
@@ -24,41 +26,14 @@ const SkeletonCard = () => (
   </div>
 )
 
-const Card = () => {
-  const [projects, setProjects] = useState<Project[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      const { data, error } = await supabase
-        .from('Projects')
-        .select('*, Techstacks(*), Features(*)')
-        .order('createdAt', { ascending: false })
-
-      if (error) {
-        console.error('Supabase Projects error:', error)
-      }
-
-      if (data) {
-        const mapped = data.map((item: any) => ({
-          ...item,
-          techstacks: item.Techstacks || [],
-          features: item.Features || [],
-        }))
-        setProjects(mapped as Project[])
-      }
-      setLoading(false)
-    }
-    fetchProjects()
-  }, [])
-
+const Card = ({ projects }: CardProps) => {
   return (
     <div className="w-full">
       <HeaderSection>My Projects</HeaderSection>
       <BorderDot className="my-5" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {loading
+        {projects.length === 0
           ? [1, 2, 3, 4].map((i) => <SkeletonCard key={i} />)
           : projects.map((item) => (
               <Link

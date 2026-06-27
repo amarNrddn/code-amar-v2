@@ -1,22 +1,3 @@
-export interface Bio {
-  id: string
-  about: string
-  city: string
-  createdAt: string
-  Jobs?: Job[]
-}
-
-export interface Job {
-  id: string
-  job: string
-}
-
-export interface About {
-  id: string
-  jobId: string
-  bioId: string
-}
-
 export interface Blog {
   id: string
   title: string

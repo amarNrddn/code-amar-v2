@@ -1,8 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
 import HeaderSection from '@/components/atoms/HeaderSection'
 import BorderDot from '@/components/atoms/BorderDot'
 import ImageLazy from '@/components/atoms/ImageLazy'
@@ -16,6 +14,10 @@ interface BlogCard {
   createdAt: string
 }
 
+interface CardProps {
+  blogs: BlogCard[]
+}
+
 const SkeletonCard = ({ featured = false }: { featured?: boolean }) => (
   <div className="rounded-md overflow-hidden dark:bg-gray-900 bg-gray-100">
     <div className={`${featured ? 'w-full h-48 md:h-64' : 'w-full h-40'} dark:bg-gray-800 bg-gray-200`} />
@@ -26,28 +28,13 @@ const SkeletonCard = ({ featured = false }: { featured?: boolean }) => (
   </div>
 )
 
-const Card = () => {
-  const [blogs, setBlogs] = useState<BlogCard[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      const { data } = await supabase
-        .from('Blogs')
-        .select('id, title, thumbnail, content, slug, createdAt')
-        .order('createdAt', { ascending: false })
-      if (data) setBlogs(data as BlogCard[])
-      setLoading(false)
-    }
-    fetchBlogs()
-  }, [])
-
+const Card = ({ blogs }: CardProps) => {
   return (
     <div className="w-full">
       <HeaderSection>Welcome to my blog! Your Source for Expert Tips and Insights!</HeaderSection>
       <BorderDot className="my-5" />
 
-      {loading ? (
+      {blogs.length === 0 ? (
         <>
           <SkeletonCard featured />
           <HeaderSection className="mt-5 mb-3 md:mt-6 md:mb-4">
@@ -59,7 +46,7 @@ const Card = () => {
             ))}
           </div>
         </>
-      ) : blogs.length > 0 ? (
+      ) : (
         <>
           <Link href={`/artikel/${blogs[0].slug}`} className="rounded-md w-full block">
             <ImageLazy
@@ -100,7 +87,7 @@ const Card = () => {
             ))}
           </div>
         </>
-      ) : null}
+      )}
     </div>
   )
 }

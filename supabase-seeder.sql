@@ -3,27 +3,7 @@
 -- Jalankan di Supabase SQL Editor setelah tabel dibuat
 -- =====================================================
 
--- 1. Bios
-INSERT INTO "Bios" (id, about, city, "createdAt", "updatedAt") VALUES
-  ('a1b2c3d4-1111-4000-8000-000000000001', 'Full-stack developer with 5+ years experience building web applications using JavaScript, Node.js, and React.', 'Jakarta', NOW(), NOW()),
-  ('a1b2c3d4-1111-4000-8000-000000000002', 'UI/UX designer focused on creating intuitive and accessible user interfaces for digital products.', 'Bandung', NOW(), NOW()),
-  ('a1b2c3d4-1111-4000-8000-000000000003', 'Backend engineer specializing in microservices architecture, API design, and cloud infrastructure.', 'Surabaya', NOW(), NOW());
-
--- 2. Jobs
-INSERT INTO "Jobs" (id, job, "createdAt", "updatedAt") VALUES
-  ('b2c3d4e5-2222-4000-8000-000000000001', 'Frontend Developer', NOW(), NOW()),
-  ('b2c3d4e5-2222-4000-8000-000000000002', 'Backend Developer', NOW(), NOW()),
-  ('b2c3d4e5-2222-4000-8000-000000000003', 'Full Stack Developer', NOW(), NOW()),
-  ('b2c3d4e5-2222-4000-8000-000000000004', 'UI/UX Designer', NOW(), NOW());
-
--- 3. Abouts (junction Bio <-> Jobs)
-INSERT INTO "Abouts" (id, "bioId", "jobId", "createdAt", "updatedAt") VALUES
-  ('c3d4e5f6-3333-4000-8000-000000000001', 'a1b2c3d4-1111-4000-8000-000000000001', 'b2c3d4e5-2222-4000-8000-000000000001', NOW(), NOW()),
-  ('c3d4e5f6-3333-4000-8000-000000000002', 'a1b2c3d4-1111-4000-8000-000000000001', 'b2c3d4e5-2222-4000-8000-000000000002', NOW(), NOW()),
-  ('c3d4e5f6-3333-4000-8000-000000000003', 'a1b2c3d4-1111-4000-8000-000000000001', 'b2c3d4e5-2222-4000-8000-000000000003', NOW(), NOW()),
-  ('c3d4e5f6-3333-4000-8000-000000000004', 'a1b2c3d4-1111-4000-8000-000000000002', 'b2c3d4e5-2222-4000-8000-000000000004', NOW(), NOW());
-
--- 4. Projects
+-- 1. Projects
 INSERT INTO "Projects" (id, title, description, linksourcode, thumbnail, introduction, clone, install, run, slug, "createdAt", "updatedAt") VALUES
   (
     'd4e5f6a7-4444-4000-8000-000000000001',
@@ -65,7 +45,7 @@ INSERT INTO "Projects" (id, title, description, linksourcode, thumbnail, introdu
     NOW(), NOW()
   );
 
--- 5. Techstacks
+-- 2. Techstacks
 INSERT INTO "Techstacks" (id, techstack, "projectId", "createdAt", "updatedAt") VALUES
   ('e5f6a7b8-5555-4000-8000-000000000001', 'React',       'd4e5f6a7-4444-4000-8000-000000000001', NOW(), NOW()),
   ('e5f6a7b8-5555-4000-8000-000000000002', 'Node.js',     'd4e5f6a7-4444-4000-8000-000000000001', NOW(), NOW()),
@@ -77,7 +57,7 @@ INSERT INTO "Techstacks" (id, techstack, "projectId", "createdAt", "updatedAt") 
   ('e5f6a7b8-5555-4000-8000-000000000008', 'Chart.js',    'd4e5f6a7-4444-4000-8000-000000000003', NOW(), NOW()),
   ('e5f6a7b8-5555-4000-8000-000000000009', 'OpenWeather API', 'd4e5f6a7-4444-4000-8000-000000000003', NOW(), NOW());
 
--- 6. Features
+-- 3. Features
 INSERT INTO "Features" (id, title, description, "projectId", "createdAt", "updatedAt") VALUES
   ('f6a7b8c9-6666-4000-8000-000000000001', 'Product Search & Filter',    'Advanced search with category filters, price range, and rating sorting.',                                                         'd4e5f6a7-4444-4000-8000-000000000001', NOW(), NOW()),
   ('f6a7b8c9-6666-4000-8000-000000000002', 'Shopping Cart & Checkout',   'Real-time cart updates with multi-step checkout and payment gateway integration.',                                                  'd4e5f6a7-4444-4000-8000-000000000001', NOW(), NOW()),
@@ -86,7 +66,7 @@ INSERT INTO "Features" (id, title, description, "projectId", "createdAt", "updat
   ('f6a7b8c9-6666-4000-8000-000000000005', 'Interactive Weather Map',    'Real-time weather visualization with interactive maps and location-based forecasts.',                                               'd4e5f6a7-4444-4000-8000-000000000003', NOW(), NOW()),
   ('f6a7b8c9-6666-4000-8000-000000000006', 'Historical Data Charts',     'Beautiful charts displaying historical weather data with Chart.js customization.',                                                  'd4e5f6a7-4444-4000-8000-000000000003', NOW(), NOW());
 
--- 7. Blogs
+-- 4. Blogs
 INSERT INTO "Blogs" (id, title, thumbnail, introduction, titleconten, content, solution, instalation, code_snippet, elucidation, tags, slug, "createdAt", "updatedAt") VALUES
   (
     'a7b8c9d0-7777-4000-8000-000000000001',

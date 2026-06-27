@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, Suspense } from 'react'
+import { useEffect, useRef, Suspense, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import { LuCalendarHeart } from 'react-icons/lu'
@@ -9,6 +9,7 @@ import Border from '@/components/atoms/Border'
 import Bio from '@/components/Bio/Bio'
 import RunText from '@/components/atoms/RunText'
 import LoadingCard from '@/components/atoms/LoadingCard'
+import Loading from '@/components/atoms/Loading'
 import ButtonThemeVsCode from '@/components/atoms/ButtonThemeVsCode'
 import HeaderSection from '@/components/atoms/HeaderSection'
 
@@ -21,7 +22,13 @@ const CardService = dynamic(() => import('@/components/CardServices/CardService'
 })
 
 export default function Home() {
+  const [loading, setLoading] = useState(true)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 300)
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current
@@ -53,6 +60,8 @@ export default function Home() {
       }
     }
   }, [])
+
+  if (loading) return <Loading />
 
   return (
     <motion.div

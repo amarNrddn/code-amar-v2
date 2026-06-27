@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub } from 'react-icons/fa'
 import { TiFlowMerge } from 'react-icons/ti'
@@ -8,8 +9,18 @@ import BorderDot from '@/components/atoms/BorderDot'
 import Border from '@/components/atoms/Border'
 import GithubCalendar from '@/components/Dashboard/GithubCalendar'
 import Roadmap from '@/components/Dashboard/Roadmap'
+import Loading from '@/components/atoms/Loading'
 
 export default function Dashboard() {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 300)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (loading) return <Loading />
+
   return (
     <motion.div
       className="mt-4 md:mt-12 pb-10 w-full relative"
