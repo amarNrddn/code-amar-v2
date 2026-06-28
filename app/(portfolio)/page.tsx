@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, Suspense } from 'react'
+import { useEffect, useRef, useState, Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import { LuCalendarHeart } from 'react-icons/lu'
@@ -24,14 +24,19 @@ const CardService = dynamic(() => import('@/components/CardServices/CardService'
 export default function Home() {
   const { t } = useLanguage()
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [cardLoaded, setCardLoaded] = useState(false)
 
   useEffect(() => {
+    if (!cardLoaded) return
+
     const scrollContainer = scrollContainerRef.current
     if (!scrollContainer) return
 
-    let animationFrameId: number
-    const cardWidth = scrollContainer.firstChild ? (scrollContainer.firstChild as HTMLElement).offsetWidth || 0 : 0
-    let scrollAmount = cardWidth
+    const firstCard = scrollContainer.firstElementChild as HTMLElement | null
+    if (!firstCard) return
+
+    const cardWidth = firstCard.offsetWidth || 220
+    const scrollAmount = cardWidth
 
     const smoothScroll = (direction: number) => {
       scrollContainer.scrollBy({
@@ -42,19 +47,13 @@ export default function Home() {
 
     const scrollLeft = () => {
       smoothScroll(1)
-      setTimeout(() => {
-        smoothScroll(-1)
-      }, 2000)
+      setTimeout(() => smoothScroll(-1), 2000)
     }
 
-    animationFrameId = requestAnimationFrame(() => setTimeout(scrollLeft, 1000))
+    const animationFrameId = requestAnimationFrame(() => setTimeout(scrollLeft, 1000))
 
-    return () => {
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId)
-      }
-    }
-  }, [])
+    return () => cancelAnimationFrame(animationFrameId)
+  }, [cardLoaded])
 
   return (
     <motion.div
@@ -84,13 +83,13 @@ export default function Home() {
             <ButtonThemeVsCode />
           </div>
         </div>
-        <div className="lg:max-w-3xl md:max-w-xl mt-5 relative">
+        <div className="mt-5 relative">
           <div
-            className="w-full flex overflow-x-auto gap-4 whitespace-nowrap non-scrole"
+            className="mt-4 flex h-40 flex-row space-x-3 overflow-y-hidden overflow-x-auto pt-2 lg:h-52 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             ref={scrollContainerRef}
           >
             <Suspense fallback={<LoadingCard />}>
-              <CardArticel />
+              <CardArticel onLoaded={() => setCardLoaded(true)} />
             </Suspense>
           </div>
         </div>

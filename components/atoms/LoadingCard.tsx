@@ -14,9 +14,9 @@ const LoadingCard = () => {
         return (
           <div
             key={item}
-            className={`w-52 rounded-lg overflow-hidden flex-shrink-0 hover:cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-95 shadow-md ${bgColor}`}
+            className={`w-72 rounded-lg overflow-hidden flex-shrink-0 hover:cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-95 shadow-md ${bgColor}`}
           >
-            <div className={`relative w-full h-28 ${pulseColor} animate-pulse`} />
+            <div className={`relative w-full h-40 ${pulseColor} animate-pulse`} />
             <div className="mt-2 px-2 py-2">
               <div className={`h-4 ${pulseColor} rounded w-3/4 animate-pulse mb-2`} />
               <div className={`h-3 ${pulseColor} rounded w-1/2 animate-pulse`} />

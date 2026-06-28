@@ -28,10 +28,30 @@ const config: Config = {
           '50%': { 'background-position': '100% 50%' },
           '100%': { 'background-position': '0% 50%' },
         },
+        'right-infinite': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(80px)' },
+        },
+        'slide-card': {
+          '0%': { opacity: '0', transform: 'translateX(20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        },
+        'gold-shimmer': {
+          '0%, 100%': { backgroundPosition: '200% 0' },
+          '50%': { backgroundPosition: '-100% 0' },
+        },
       },
       animation: {
         pulseDot: 'pulseDot 1.5s infinite',
         rainbow: 'rainbow 3s ease-in-out infinite',
+        'right-infinite': 'right-infinite 1.5s ease-in-out infinite',
+        'slide-card': 'slide-card 0.5s ease-out',
+        shimmer: 'shimmer 2.5s ease-in-out infinite',
+        'gold-shimmer': 'gold-shimmer 3s ease-in-out infinite',
       },
       scale: {
         '103': '1.03',

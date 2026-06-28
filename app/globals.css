@@ -80,3 +80,81 @@ svg .line2 {
 .border-theme-dark {
   border-color: var(--line2-color);
 }
+
+/* ----- Ribbon Container ---------------------------------------*/
+#ribbon-container {
+  background: transparent;
+  height: 130px;
+  width: 200px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  overflow: hidden;
+}
+
+/* ----- Top Curl ---------------------------------------*/
+#ribbon-container:before {
+  content: '';
+  display: block;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
+  width: 35px;
+  height: 10px;
+  position: absolute;
+  right: 30px;
+  z-index: 1;
+  background: #f59e0b;
+}
+
+/* ----- Right Curl ---------------------------------------*/
+#ribbon-container:after {
+  content: '';
+  display: block;
+  -webkit-border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 10px 10px 0px;
+  width: 10px;
+  height: 35px;
+  position: absolute;
+  right: 0px;
+  top: 30px;
+  background: #f59e0b;
+}
+
+/* ----- Shimmer Effect ---------------------------------------*/
+.shimmer-slide {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 30%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 70%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-slide 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer-slide {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ----- Ribbon ---------------------------------------*/
+#ribbon-container > div {
+  width: 100px;
+  height: 20px;
+  position: relative;
+  top: 18px;
+  right: -135px;
+  z-index: 11;
+  overflow: hidden;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
