@@ -173,4 +173,22 @@ export async function deleteTechstack(id: string) {
   if (error) throw error
 }
 
+export async function deleteFeaturesByProjectId(projectId: string) {
+  const { error } = await supabaseAdmin
+    .from('Features')
+    .delete()
+    .eq('projectId', projectId)
+
+  if (error) throw error
+}
+
+export async function deleteTechstacksByProjectId(projectId: string) {
+  const { error } = await supabaseAdmin
+    .from('Techstacks')
+    .delete()
+    .eq('projectId', projectId)
+
+  if (error) throw error
+}
+
 
