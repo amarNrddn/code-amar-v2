@@ -20,7 +20,7 @@ const NavDesktop = () => {
   const containerNav = 'bg-white text-black dark:bg-black dark:text-white sidebar-shadow'
 
   return (
-    <nav className="fixed left-0 hidden md:block">
+    <nav className="fixed left-0 hidden md:block z-20 bg-white dark:bg-black">
       <motion.div
         className={`h-screen ${containerNav} rounded-tr-xl rounded-br-xl shadow-xl relative ${hovered ? '' : 'pt-4'}`}
         onHoverStart={() => setHovered(true)}
