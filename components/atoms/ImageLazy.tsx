@@ -1,5 +1,8 @@
 import Image from 'next/image'
 
+const blurDataURL =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=='
+
 interface ImageLazyProps {
   image: string
   className?: string
@@ -18,6 +21,8 @@ const ImageLazy = ({ image, className = '', alt = '', priority, sizes }: ImageLa
       sizes={sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'}
       loading={priority ? 'eager' : 'lazy'}
       priority={priority}
+      placeholder="blur"
+      blurDataURL={blurDataURL}
     />
   )
 }
