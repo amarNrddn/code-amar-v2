@@ -17,10 +17,10 @@ const NavDesktop = () => {
     setIsActive(pathname)
   }, [pathname])
 
-  const containerNav = 'bg-white text-black dark:bg-black dark:text-white sidebar-shadow'
+  const containerNav = 'bg-white text-black dark:bg-black dark:text-white sidebar-shadow transition-colors duration-300'
 
   return (
-    <nav className="fixed left-0 hidden md:block z-20 bg-white dark:bg-black">
+    <nav className="fixed left-0 hidden md:block z-20 bg-white dark:bg-black transition-colors duration-300">
       <motion.div
         className={`h-screen ${containerNav} rounded-tr-xl rounded-br-xl shadow-xl relative ${hovered ? '' : 'pt-4'}`}
         onHoverStart={() => setHovered(true)}
@@ -32,7 +32,7 @@ const NavDesktop = () => {
       >
         <ProfileSidebar hovered={hovered} />
         <div className="px-4">
-          <div className="w-full h-0.5 rounded-lg mt-2 bg-gray-200 dark:bg-gray-500" />
+          <div className="w-full h-0.5 rounded-lg mt-2 bg-gray-200 dark:bg-gray-500 transition-colors duration-300" />
         </div>
         <div className={`${hovered ? 'px-4' : 'px-3'} pt-4`}>
           <ItemNavDesktop isActive={isActive} navItems={navItems} hovered={hovered} />

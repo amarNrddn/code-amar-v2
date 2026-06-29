@@ -43,7 +43,7 @@ const NavMobile = () => {
   }, [])
 
   return (
-    <nav className={`px-3 py-3 bg-white text-black dark:bg-black dark:text-white md:hidden`}>
+    <nav className={`px-3 py-3 bg-white text-black dark:bg-black dark:text-white transition-colors duration-300 md:hidden`}>
       <div className="flex justify-between items-center">
         <Profile />
         <div className="flex items-center gap-3">
@@ -60,7 +60,7 @@ const NavMobile = () => {
 
         <div
           ref={navRef}
-          className={`${togle ? 'flex' : 'hidden'} px-3 z-50 bg-white dark:bg-black fixed top-16 left-0 my-2 min-w-full shadow-md navtrantition`}
+          className={`${togle ? 'flex' : 'hidden'} px-3 z-50 bg-white dark:bg-black transition-colors duration-300 fixed top-16 left-0 my-2 min-w-full shadow-md navtrantition`}
         >
           {togle && (
             <div className="w-full">

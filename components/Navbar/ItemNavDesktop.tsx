@@ -63,7 +63,7 @@ const ItemNavDesktop = ({ isActive, navItems, hovered }: ItemNavDesktopProps) =>
             onClick={() => router.push(item.path)}
             aria-label={t('nav.' + key)}
           >
-            <span className={`text-lg font-bold ${iconStyle}`}>
+            <span className={`text-lg font-bold transition-colors duration-300 ${iconStyle}`}>
               {item.icon}
             </span>
 

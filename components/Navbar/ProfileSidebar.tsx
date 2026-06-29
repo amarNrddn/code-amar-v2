@@ -41,7 +41,7 @@ const ProfileSidebar = ({ hovered }: ProfileSidebarProps) => {
           top: '10px',
         }}
       >
-        <div className="w-24 h-8 rounded-md bg-white dark:bg-black" />
+        <div className="w-24 h-8 rounded-md bg-white dark:bg-black transition-colors duration-300" />
       </div>
       <div className="pl-4 flex items-center absolute left-[-4px] top-[-3px]">
         <div className="mt-4 max-w-[100px] px-2 py-1 flex items-center gap-1 border-2 rounded-xl">
@@ -57,7 +57,7 @@ const ProfileSidebar = ({ hovered }: ProfileSidebarProps) => {
           initial={{ scale: 0.5 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="absolute right-2 top-[15px] flex items-center gap-1 px-2 py-1 rounded-full bg-white/80 dark:bg-black/50"
+          className="absolute right-2 top-[15px] flex items-center gap-1 px-2 py-1 rounded-full bg-white/80 dark:bg-black/50 transition-colors duration-300"
         >
           <TogleLanguage />
           <TogleTheme />
@@ -80,7 +80,7 @@ const ProfileSidebar = ({ hovered }: ProfileSidebarProps) => {
           <span className="whitespace-nowrap text-lg font-medium">{t('nav.name')}</span>
           <TbRosetteDiscountCheckFilled className="text-cyan-500 text-2xl ml-1" />
         </div>
-        <p className="text-sm text-gray-600">{t('nav.username')}</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">{t('nav.username')}</p>
       </motion.div>
     </div>
   )
