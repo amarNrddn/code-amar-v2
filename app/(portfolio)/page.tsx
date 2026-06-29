@@ -85,7 +85,7 @@ export default function Home() {
         </div>
         <div className="mt-5 relative">
           <div
-            className="mt-4 flex h-40 flex-row space-x-3 overflow-y-hidden overflow-x-auto pt-2 lg:h-52 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="mt-4 flex h-64 flex-row space-x-3 overflow-y-hidden overflow-x-auto pt-2 lg:h-52 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             ref={scrollContainerRef}
           >
             <Suspense fallback={<LoadingCard />}>

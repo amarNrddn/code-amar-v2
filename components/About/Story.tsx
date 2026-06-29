@@ -7,7 +7,7 @@ const Story = () => {
 
   return (
     <div>
-      <div className="leading-loose">
+      <div className="leading-loose text-justify">
         <p className="mb-4">{t('about.story.p1')}</p>
         <p className="mb-4">{t('about.story.p2')}</p>
         <p className="mb-4">{t('about.story.p3')}</p>

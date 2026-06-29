@@ -36,7 +36,7 @@ const CardArticel = ({ onLoaded }: CardArticelProps) => {
             onClick={() => router.push(`/artikel/${item.slug}`)}
           >
             <div className="relative z-10 flex h-max w-full flex-col items-start space-y-1">
-              <div className="relative aspect-video h-28 w-full overflow-hidden rounded-md lg:h-40">
+              <div className="relative aspect-video h-48 w-full overflow-hidden rounded-md lg:h-40">
                 <ImageLazy
                   image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${item.thumbnail}`}
                   className="h-full w-full rounded-md object-cover"
