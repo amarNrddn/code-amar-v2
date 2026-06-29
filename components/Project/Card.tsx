@@ -33,6 +33,7 @@ const Card = ({ projects }: CardProps) => {
   return (
     <div className="w-full">
       <HeaderSection>{t('project.title')}</HeaderSection>
+      <p className="text-sm text-neutral-800 dark:text-neutral-300 mt-4">{t('project.desc')}</p>
       <BorderDot className="my-5" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -42,7 +43,7 @@ const Card = ({ projects }: CardProps) => {
               <Link
                 key={item.id}
                 href={`/project/${item.slug}`}
-                className="rounded-md overflow-hidden dark:bg-gray-900 bg-gray-100 cursor-pointer hover:scale-[1.02] transition-transform"
+                className="rounded-md overflow-hidden dark:bg-gray-900 bg-gray-100 cursor-pointer hover:scale-[1.02] transition-transform border border-transparent hover:border-emerald-500 dark:hover:border-emerald-900"
               >
                 {item.thumbnail && (
                   <ImageLazy

@@ -35,6 +35,7 @@ const Card = ({ blogs }: CardProps) => {
   return (
     <div className="w-full">
       <HeaderSection>{t('blog.title')}</HeaderSection>
+      <p className="text-sm text-neutral-800 dark:text-neutral-300 mt-4">{t('blog.desc')}</p>
       <BorderDot className="my-5" />
 
       {blogs.length === 0 ? (
