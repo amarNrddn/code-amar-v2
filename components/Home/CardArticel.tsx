@@ -39,8 +39,10 @@ const CardArticel = ({ onLoaded }: CardArticelProps) => {
               <div className="relative aspect-video h-48 w-full overflow-hidden rounded-md lg:h-40">
                 <ImageLazy
                   image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${item.thumbnail}`}
-                  className="h-full w-full rounded-md object-cover"
+                  className="rounded-md object-cover"
                   alt={item.title}
+                  priority={index === 0}
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               <p className="text-start text-sm text-neutral-800 dark:text-neutral-300 truncate w-full">

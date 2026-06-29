@@ -1,24 +1,23 @@
-'use client'
-
-import { LazyLoadImage } from 'react-lazy-load-image-component'
-import 'react-lazy-load-image-component/src/effects/blur.css'
+import Image from 'next/image'
 
 interface ImageLazyProps {
   image: string
   className?: string
   alt?: string
+  priority?: boolean
+  sizes?: string
 }
 
-const ImageLazy = ({ image, className = '', alt = '' }: ImageLazyProps) => {
+const ImageLazy = ({ image, className = '', alt = '', priority, sizes }: ImageLazyProps) => {
   return (
-    <LazyLoadImage
+    <Image
       src={image}
       alt={alt}
       className={className}
-      effect="blur"
-      wrapperProps={{
-        style: { transitionDelay: '1s' },
-      }}
+      fill
+      sizes={sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'}
+      loading={priority ? 'eager' : 'lazy'}
+      priority={priority}
     />
   )
 }

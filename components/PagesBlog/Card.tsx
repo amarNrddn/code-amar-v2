@@ -53,11 +53,13 @@ const Card = ({ blogs }: CardProps) => {
       ) : (
         <>
           <Link href={`/artikel/${blogs[0].slug}`} className="rounded-md w-full block">
-            <ImageLazy
-              image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${blogs[0].thumbnail}`}
-              className="w-full rounded-md"
-              alt={blogs[0].title}
-            />
+            <div className="w-full h-48 md:h-64 relative overflow-hidden rounded-md">
+              <ImageLazy
+                image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${blogs[0].thumbnail}`}
+                className="object-cover"
+                alt={blogs[0].title}
+              />
+            </div>
             <h2 className="mt-2 font-bold dark:text-gray-400 text-gray-600">
               {blogs[0].title}
             </h2>
@@ -77,11 +79,13 @@ const Card = ({ blogs }: CardProps) => {
                 href={`/artikel/${item.slug}`}
                 className="rounded-md cursor-pointer block"
               >
-                <ImageLazy
-                  image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${item.thumbnail}`}
-                  className="w-full h-40 object-cover rounded-md"
-                  alt={item.title}
-                />
+                <div className="w-full h-40 relative overflow-hidden rounded-md">
+                  <ImageLazy
+                    image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${item.thumbnail}`}
+                    className="object-cover"
+                    alt={item.title}
+                  />
+                </div>
                 <h2 className="mt-2 font-bold hover:text-emerald-500 line-clamp-2 dark:text-gray-400 text-gray-600">
                   {item.title}
                 </h2>

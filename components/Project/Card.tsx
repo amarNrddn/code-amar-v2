@@ -43,14 +43,16 @@ const Card = ({ projects }: CardProps) => {
               <Link
                 key={item.id}
                 href={`/project/${item.slug}`}
-                className="rounded-md overflow-hidden dark:bg-gray-900 bg-gray-100 cursor-pointer hover:scale-[1.02] transition-transform border border-transparent hover:border-emerald-500 dark:hover:border-emerald-900"
+                className="relative rounded-md overflow-hidden dark:bg-gray-900 bg-gray-100 cursor-pointer hover:scale-[1.02] transition-transform border border-transparent hover:border-emerald-500 dark:hover:border-emerald-900"
               >
                 {item.thumbnail && (
-                  <ImageLazy
-                    image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${item.thumbnail}`}
-                    className="w-full h-48 object-cover"
-                    alt={item.title}
-                  />
+                  <div className="w-full h-48 relative overflow-hidden">
+                    <ImageLazy
+                      image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${item.thumbnail}`}
+                      className="object-cover"
+                      alt={item.title}
+                    />
+                  </div>
                 )}
                 <div className="p-4">
                   <h2 className="font-bold text-lg dark:text-white text-black">{item.title}</h2>

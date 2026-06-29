@@ -1,21 +1,3 @@
-declare module 'react-lazy-load-image-component' {
-  import { FC, ImgHTMLAttributes } from 'react'
-  interface LazyLoadImageProps extends ImgHTMLAttributes<HTMLImageElement> {
-    effect?: string
-    wrapperClassName?: string
-    threshold?: number
-    beforeLoad?: () => void
-    afterLoad?: () => void
-    placeholder?: React.ReactNode
-    wrapperProps?: Record<string, any>
-    visibleByDefault?: boolean
-  }
-  export const LazyLoadImage: FC<LazyLoadImageProps>
-  export const trackWindowScroll: (component: React.ComponentType<any>) => React.ComponentType<any>
-}
-
-declare module 'react-lazy-load-image-component/src/effects/blur.css'
-
 declare module 'react-top-loading-bar' {
   import { FC, RefObject } from 'react'
   interface LoadingBarProps {
