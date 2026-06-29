@@ -59,7 +59,7 @@ const ViewBlog = () => {
       <p className="mt-5 text-sm text-gray-500 mb-4">{t('blogView.publishedOn')}{formateDate}</p>
       <BorderDot className="mb-4" />
 
-      <div className="w-full h-56 md:h-80 overflow-hidden relative">
+      <div className="w-full h-56 md:h-96 overflow-hidden relative">
         <ImageLazy
           image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${blog.thumbnail}`}
           className="w-full h-full rounded-md object-cover"

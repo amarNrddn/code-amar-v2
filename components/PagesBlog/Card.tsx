@@ -21,7 +21,7 @@ interface CardProps {
 
 const SkeletonCard = ({ featured = false }: { featured?: boolean }) => (
   <div className="rounded-md overflow-hidden dark:bg-gray-900 bg-gray-100">
-    <div className={`${featured ? 'w-full h-48 md:h-64' : 'w-full h-40'} dark:bg-gray-800 bg-gray-200`} />
+    <div className={`${featured ? 'w-full h-48 md:h-80' : 'w-full h-40 md:h-56'} dark:bg-gray-800 bg-gray-200`} />
     <div className="p-4">
       <div className="h-5 dark:bg-gray-800 bg-gray-200 rounded w-3/4 mb-2" />
       <div className="h-3 dark:bg-gray-800 bg-gray-200 rounded w-1/4" />
@@ -53,7 +53,7 @@ const Card = ({ blogs }: CardProps) => {
       ) : (
         <>
           <Link href={`/artikel/${blogs[0].slug}`} className="rounded-md w-full block">
-            <div className="w-full h-48 md:h-64 relative overflow-hidden rounded-md">
+            <div className="w-full h-48 md:h-80 relative overflow-hidden rounded-md">
               <ImageLazy
                 image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${blogs[0].thumbnail}`}
                 className="object-cover"
@@ -79,7 +79,7 @@ const Card = ({ blogs }: CardProps) => {
                 href={`/artikel/${item.slug}`}
                 className="rounded-md cursor-pointer block"
               >
-                <div className="w-full h-40 relative overflow-hidden rounded-md">
+                <div className="w-full h-40 md:h-56 relative overflow-hidden rounded-md">
                   <ImageLazy
                     image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${item.thumbnail}`}
                     className="object-cover"
