@@ -54,15 +54,15 @@ export default function Dashboard() {
       </div>
 
       <GithubCalendar />
-      <div className="relative w-full min-h-[128px]">
+      <div className="relative w-full min-h-[128px] overflow-x-auto">
         {!chartLoaded && (
           <div className="absolute inset-0 flex items-center justify-center z-10">
-            <div className="w-8 h-8 border-2 border-t-transparent rounded-full animate-spin dark:border-white border-gray-900" />
+            <div className="w-5 h-5 border-2 border-t-transparent rounded-full animate-spin dark:border-white border-gray-900" />
           </div>
         )}
         <img
           ref={imgRef}
-          className={`w-full ${chartLoaded ? '' : 'opacity-0'} transition-opacity`}
+          className={`min-w-[700px] md:min-w-0 md:w-full ${chartLoaded ? '' : 'opacity-0'} transition-opacity`}
           src="https://ghchart.rshah.org/amarNrddn"
           alt={t('dashboard.chartAlt')}
           onLoad={() => setChartLoaded(true)}
