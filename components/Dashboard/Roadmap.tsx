@@ -1,11 +1,8 @@
 'use client'
 
 import { itemsRoadmap } from '@/constants/roadmap'
-import { useTheme } from '@/context/ThemeProvider'
 
 const Roadmap = () => {
-  const { theme } = useTheme()
-
   return (
     <div>
       {itemsRoadmap.map((item, i) => (
@@ -19,9 +16,7 @@ const Roadmap = () => {
           </div>
           <div>
             <a href={item.link} target="_blank" rel="noreferrer">
-              <p
-                className={`text-xs p-1 bg-green-200 rounded-full ${theme === 'dark' ? 'text-black' : ''}`}
-              >
+              <p className="text-xs p-1 bg-green-200 rounded-full dark:text-black">
                 {item.language}
               </p>
             </a>

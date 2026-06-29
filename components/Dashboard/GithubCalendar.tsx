@@ -3,19 +3,15 @@
 import { useEffect, useState } from 'react'
 import { configs } from '@/constants/configs'
 import { useLanguage } from '@/context/LanguageProvider'
-import { useTheme } from '@/context/ThemeProvider'
 
-
-
-const Spinner = ({ theme }: { theme: string }) => (
+const Spinner = () => (
   <div className="flex items-center justify-center h-7">
-    <div className={`w-5 h-5 border-2 border-t-transparent rounded-full animate-spin ${theme === 'dark' ? 'border-white' : 'border-gray-900'}`} />
+    <div className="w-5 h-5 border-2 border-t-transparent rounded-full animate-spin dark:border-white border-gray-900" />
   </div>
 )
 
 const GithubCalendar = () => {
   const { t } = useLanguage()
-  const { theme } = useTheme()
   const [loading, setLoading] = useState(true)
   const [totalContributions, setTotalContributions] = useState(0)
   const [follower, setFollower] = useState(0)
@@ -94,19 +90,19 @@ const GithubCalendar = () => {
       <div className="grid grid-cols-2 md:flex gap-4 mb-5 mt-4">
         <div className="shadow-lg rounded-lg py-2 pl-3 md:w-1/5">
           <p className="text-sm">{t('github.total')}</p>
-          {loading ? <Spinner theme={theme} /> : <p className="text-xl font-medium text-green-500">{totalContributions}</p>}
+          {loading ? <Spinner /> : <p className="text-xl font-medium text-green-500">{totalContributions}</p>}
         </div>
         <div className="shadow-lg rounded-lg py-2 pl-3 md:w-1/5">
           <p className="text-sm">{t('github.repos')}</p>
-          {loading ? <Spinner theme={theme} /> : <p className="text-xl font-medium text-green-500">{repo}</p>}
+          {loading ? <Spinner /> : <p className="text-xl font-medium text-green-500">{repo}</p>}
         </div>
         <div className="shadow-lg rounded-lg py-2 pl-3 md:w-1/5">
           <p className="text-sm">{t('github.followers')}</p>
-          {loading ? <Spinner theme={theme} /> : <p className="text-xl font-medium text-green-500">{follower}</p>}
+          {loading ? <Spinner /> : <p className="text-xl font-medium text-green-500">{follower}</p>}
         </div>
         <div className="shadow-lg rounded-lg py-2 pl-3 md:w-1/5">
           <p className="text-sm">{t('github.average')}</p>
-          {loading ? <Spinner theme={theme} /> : <p className="text-xl font-medium text-green-500">{average}<span className="text-gray-500 text-sm">{t('github.perDay')}</span></p>}
+          {loading ? <Spinner /> : <p className="text-xl font-medium text-green-500">{average}<span className="text-gray-500 text-sm">{t('github.perDay')}</span></p>}
         </div>
       </div>
     </>

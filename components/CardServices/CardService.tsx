@@ -1,13 +1,11 @@
 'use client'
 
-import { useTheme } from '@/context/ThemeProvider'
 import { useLanguage } from '@/context/LanguageProvider'
 import WebIlustration from './WebIlustration'
 import MobileIlustration from './MobileIlustration'
 import AnalyticIlustration from './AnalyticIlustration'
 
 const CardService = () => {
-  const { theme } = useTheme()
   const { t } = useLanguage()
 
   const items = [
@@ -42,11 +40,11 @@ const CardService = () => {
             <div className="pt-4 mb-6 flex justify-center">
               {item.thumbnail}
             </div>
-            <div className={`absolute top-3 right-3 px-2 py-[1px] rounded-xl inline-block text-xs ${theme === 'dark' ? 'border-[1px] border-green-300 bg-emerald-500' : 'bg-gray-200 text-gray-700'}`}>
+            <div className="absolute top-3 right-3 px-2 py-[1px] rounded-xl inline-block text-xs dark:border-[1px] dark:border-green-300 dark:bg-emerald-500 bg-gray-200 text-gray-700">
               {item.tech}
             </div>
             <h2 className="text-xl font-medium mt-2">{item.title}</h2>
-            <p className={`text-sm mt-1 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+            <p className="text-sm mt-1 dark:text-gray-300 text-gray-600">
               {item.des}
             </p>
           </div>

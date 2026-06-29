@@ -10,11 +10,8 @@ import Border from '@/components/atoms/Border'
 import GithubCalendar from '@/components/Dashboard/GithubCalendar'
 import Roadmap from '@/components/Dashboard/Roadmap'
 import { useLanguage } from '@/context/LanguageProvider'
-import { useTheme } from '@/context/ThemeProvider'
-
 export default function Dashboard() {
   const { t } = useLanguage()
-  const { theme } = useTheme()
   const [chartLoaded, setChartLoaded] = useState(false)
   const imgRef = useRef<HTMLImageElement>(null)
 
@@ -60,7 +57,7 @@ export default function Dashboard() {
       <div className="relative w-full min-h-[128px]">
         {!chartLoaded && (
           <div className="absolute inset-0 flex items-center justify-center z-10">
-            <div className={`w-8 h-8 border-2 border-t-transparent rounded-full animate-spin ${theme === 'dark' ? 'border-white' : 'border-gray-900'}`} />
+            <div className="w-8 h-8 border-2 border-t-transparent rounded-full animate-spin dark:border-white border-gray-900" />
           </div>
         )}
         <img

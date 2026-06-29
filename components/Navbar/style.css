@@ -10,5 +10,9 @@
 }
 
 .sidebar-shadow {
-  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dark .sidebar-shadow {
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.15);
 }

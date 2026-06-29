@@ -54,6 +54,8 @@
   --line1-color: #a3a3a3;
   --area1-color: rgba(212, 212, 212, 0.3);
   --area2-color: rgba(229, 229, 229, 0.3);
+  --insta-gradient: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  --marquee-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 .dark {
@@ -61,6 +63,8 @@
   --line2-color: #e879f9;
   --area1-color: rgba(38, 38, 38, 0.3);
   --area2-color: rgba(64, 64, 64, 0.3);
+  --insta-gradient: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+  --marquee-shadow: 0 4px 6px -1px rgb(38, 38, 38), 0 2px 4px -2px rgb(38, 38, 38);
 }
 
 svg .area1,

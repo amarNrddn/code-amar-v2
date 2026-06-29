@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import { cookies } from 'next/headers'
+import { ThemeProvider } from '@/context/ThemeProvider'
 import './globals.css'
 
 const roboto = Roboto({
@@ -26,11 +27,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={isDark ? 'dark' : ''} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{
+          __html: `try{var t=localStorage.getItem('theme');if(!t){var m=document.cookie.match(/theme=([^;]+)/);t=m?m[1]:'light'}if(t==='dark'){document.documentElement.classList.add('dark')}}catch(e){}`
+        }} />
         <link rel="preconnect" href="https://gtgdlgnmlsmrqnnvqyxd.supabase.co" />
         <link rel="dns-prefetch" href="https://gtgdlgnmlsmrqnnvqyxd.supabase.co" />
       </head>
-      <body className={roboto.className}>
-        {children}
+      <body className={roboto.className} suppressHydrationWarning>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

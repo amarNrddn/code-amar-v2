@@ -1,10 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useTheme } from '@/context/ThemeProvider'
 
 const AnalyticIlustration = () => {
-  const { theme } = useTheme()
   const animationProps = {
     initial: { pathLength: 0 },
     animate: { pathLength: [0, 1, 0] },
@@ -21,7 +19,7 @@ const AnalyticIlustration = () => {
       <svg
         viewBox="0 0 300 200"
         preserveAspectRatio="none"
-        className={`h-24 w-full border-b border-l ${theme === 'dark' ? 'border-neutral-700' : 'border-neutral-300'}`}
+        className="h-24 w-full border-b border-l dark:border-neutral-700 border-neutral-300"
         style={{ borderBottomLeftRadius: '4px' }}
       >
         <motion.path

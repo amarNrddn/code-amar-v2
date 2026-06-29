@@ -1,30 +1,28 @@
 'use client'
 
 import { FaGithub, FaArrowUp, FaLinkedin, FaInstagram } from 'react-icons/fa'
-import { useTheme } from '@/context/ThemeProvider'
 import { useLanguage } from '@/context/LanguageProvider'
 
 const SocialMedia = () => {
-  const { theme } = useTheme()
   const { t } = useLanguage()
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div className={`relative px-3 py-4 rounded-md border-[1px] ${theme === 'dark' ? 'bg-gray-700 border-gray-600' : 'bg-gray-200 border-gray-300'}`}>
+      <div className="relative px-3 py-4 rounded-md border-[1px] dark:bg-gray-700 dark:border-gray-600 bg-gray-200 border-gray-300">
         <p className="font-bold text-xl">{t('social.github.title')}</p>
         <p className="pr-14 mt-2 text-sm">{t('social.github.desc')}</p>
-        <div className={`absolute right-5 bottom-5 w-14 h-14 flex justify-center items-center rounded-full ${theme === 'dark' ? 'bg-gray-900' : 'bg-black'}`}>
+        <div className="absolute right-5 bottom-5 w-14 h-14 flex justify-center items-center rounded-full dark:bg-gray-900 bg-black">
           <FaGithub className="text-white text-center w-full text-3xl" />
         </div>
         <a href="https://github.com/amarNrddn" target="_blank" rel="noreferrer">
-          <button className={`flex items-center gap-2 py-1 px-2 rounded-md mt-3 ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-black text-white'}`}>
+          <button className="flex items-center gap-2 py-1 px-2 rounded-md mt-3 dark:bg-gray-900 dark:text-white bg-black text-white">
             {t('social.github.button')}
             <FaArrowUp className="rotate-45" />
           </button>
         </a>
       </div>
 
-      <div className={`relative px-3 py-4 rounded-md border-[1px] ${theme === 'dark' ? 'bg-sky-800 border-sky-600' : 'bg-sky-200 border-sky-300'}`}>
+      <div className="relative px-3 py-4 rounded-md border-[1px] dark:bg-sky-800 dark:border-sky-600 bg-sky-200 border-sky-300">
         <p className="font-bold text-xl">{t('social.linkedin.title')}</p>
         <p className="pr-14 mt-2 text-sm">{t('social.linkedin.desc')}</p>
         <div className="absolute right-5 bottom-5 w-14 h-14 flex justify-center items-center rounded-full" style={{ background: '#0077B5' }}>
@@ -38,14 +36,14 @@ const SocialMedia = () => {
         </a>
       </div>
 
-      <div className={`relative px-3 py-4 rounded-md border-[1px] ${theme === 'dark' ? 'bg-pink-800 border-pink-600' : 'bg-pink-200 border-pink-300'}`}>
+      <div className="relative px-3 py-4 rounded-md border-[1px] dark:bg-pink-800 dark:border-pink-600 bg-pink-200 border-pink-300">
         <p className="font-bold text-xl">{t('social.instagram.title')}</p>
         <p className="pr-14 mt-2 text-sm">{t('social.instagram.desc')}</p>
-        <div className="absolute right-5 bottom-5 w-14 h-14 flex justify-center items-center rounded-full" style={{ background: theme === 'dark' ? 'linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045)' : 'linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)' }}>
+        <div className="absolute right-5 bottom-5 w-14 h-14 flex justify-center items-center rounded-full" style={{ background: 'var(--insta-gradient)' }}>
           <FaInstagram className="text-white text-center w-full text-3xl" />
         </div>
         <a href="https://www.instagram.com/amarrnrdn/" target="_blank" rel="noreferrer">
-          <button className="flex items-center gap-2 py-1 px-2 rounded-md mt-3" style={{ background: theme === 'dark' ? 'linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045)' : 'linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)', color: 'white' }}>
+          <button className="flex items-center gap-2 py-1 px-2 rounded-md mt-3 text-white" style={{ background: 'var(--insta-gradient)' }}>
             {t('social.instagram.button')}
             <FaArrowUp className="rotate-45" />
           </button>

@@ -1,4 +1,3 @@
-import { ThemeProvider } from '@/context/ThemeProvider'
 import { LanguageProvider } from '@/context/LanguageProvider'
 import Navbar from '@/components/Navbar/Navbar'
 
@@ -8,8 +7,7 @@ export default function PortfolioLayout({
   children: React.ReactNode
 }) {
   return (
-    <ThemeProvider>
-      <LanguageProvider>
+    <LanguageProvider>
       <Navbar />
       <main className="md:flex md:justify-center">
         <div className="relative w-full md:max-w-xl lg:max-w-3xl">
@@ -22,7 +20,6 @@ export default function PortfolioLayout({
           </div>
         </div>
       </main>
-      </LanguageProvider>
-    </ThemeProvider>
+    </LanguageProvider>
   )
 }

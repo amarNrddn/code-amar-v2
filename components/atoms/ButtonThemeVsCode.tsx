@@ -1,12 +1,9 @@
 'use client'
 
 import { FcAdvertising } from 'react-icons/fc'
-import { useTheme } from '@/context/ThemeProvider'
-import { bgDark, bgWhite, textLight } from '@/constants/styles'
 import { useLanguage } from '@/context/LanguageProvider'
 
 const ButtonThemeVsCode = () => {
-  const { theme } = useTheme()
   const { t } = useLanguage()
 
   return (
@@ -17,7 +14,7 @@ const ButtonThemeVsCode = () => {
         rel="noreferrer"
       >
         <button
-          className={`w-full flex items-center gap-2 px-2 py-2 text-gray-500 rounded-md text-xs text-start md:justify-center ${theme === 'dark' ? `${bgDark.className} ${textLight.className}` : bgWhite.className}`}
+          className="w-full flex items-center gap-2 px-2 py-2 text-gray-500 rounded-md text-xs text-start md:justify-center dark:bg-black dark:text-white bg-white"
         >
           <FcAdvertising className="text-xl -rotate-12" />
           {t('buttonTheme.desc')}
