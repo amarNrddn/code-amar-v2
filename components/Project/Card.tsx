@@ -13,7 +13,7 @@ interface CardProps {
 
 const SkeletonCard = () => (
   <div className="rounded-md overflow-hidden dark:bg-gray-900 bg-gray-100">
-    <div className="w-full h-56 md:h-64 dark:bg-gray-800 bg-gray-200" />
+    <div className="w-full h-64 md:h-72 dark:bg-gray-800 bg-gray-200" />
     <div className="p-4">
       <div className="h-5 dark:bg-gray-800 bg-gray-200 rounded w-2/3 mb-2" />
       <div className="h-3 dark:bg-gray-800 bg-gray-200 rounded w-full mb-1" />
@@ -46,7 +46,7 @@ const Card = ({ projects }: CardProps) => {
                 className="relative rounded-md overflow-hidden dark:bg-gray-900 bg-gray-100 cursor-pointer hover:scale-[1.02] transition-transform border border-transparent dark:hover:border-emerald-900"
               >
                 {item.thumbnail && (
-                  <div className="w-full h-56 md:h-64 relative overflow-hidden">
+                  <div className="w-full h-64 md:h-72 relative overflow-hidden">
                     <ImageLazy
                       image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${item.thumbnail}`}
                       className="object-cover"

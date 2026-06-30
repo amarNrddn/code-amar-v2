@@ -97,7 +97,7 @@ const ViewProject = () => {
       )}
 
       {project.thumbnail && (
-        <div className="w-full h-36 md:h-80 overflow-hidden relative">
+        <div className="w-full h-64 md:h-80 overflow-hidden relative">
           <ImageLazy
             image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${project.thumbnail}`}
             className="w-full h-full rounded-md object-cover transition-transform duration-500 ease-out hover:scale-105 hover:rounded-md hover:transform hover:origin-center"
