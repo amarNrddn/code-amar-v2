@@ -55,3 +55,16 @@ CREATE TABLE "Features" (
   "createdAt" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   "updatedAt" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- 5. Careers
+CREATE TABLE "Careers" (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  title TEXT,
+  thumbnail TEXT,
+  company_description TEXT,
+  period TEXT,
+  responsibilities JSONB DEFAULT '[]',
+  slug TEXT,
+  "createdAt" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  "updatedAt" TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

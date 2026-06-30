@@ -1,5 +1,5 @@
 import { supabaseAdmin } from './supabase-admin'
-import { Blog, Project } from './types'
+import { Blog, Project, Career } from './types'
 
 export async function getAllBlogs(): Promise<any[]> {
   const { data, error } = await supabaseAdmin
@@ -187,6 +187,66 @@ export async function deleteTechstacksByProjectId(projectId: string) {
     .from('Techstacks')
     .delete()
     .eq('projectId', projectId)
+
+  if (error) throw error
+}
+
+// Career
+export async function getAllCareers(): Promise<any[]> {
+  const { data, error } = await supabaseAdmin
+    .from('Careers')
+    .select('*')
+    .order('createdAt', { ascending: false })
+
+  if (error) {
+    console.error('Supabase Careers error:', error)
+    return []
+  }
+  return data || []
+}
+
+export async function getCareerBySlug(slug: string): Promise<Career | null> {
+  const { data, error } = await supabaseAdmin
+    .from('Careers')
+    .select('*')
+    .eq('slug', slug)
+    .single()
+
+  if (error) {
+    console.error('Supabase CareerBySlug error:', error)
+    return null
+  }
+  return data
+}
+
+export async function createCareer(career: Partial<Career>) {
+  const { data, error } = await supabaseAdmin
+    .from('Careers')
+    .insert([career])
+    .select()
+    .single()
+
+  if (error) throw error
+  return data
+}
+
+export async function updateCareer(slug: string, career: Partial<Career>) {
+  const { data, error } = await supabaseAdmin
+    .from('Careers')
+    .update(career)
+    .eq('slug', slug)
+    .select()
+    .single()
+
+  if (error) throw error
+  return data
+}
+
+export async function deleteCareer(slug: string) {
+  const { error } = await supabaseAdmin
+    .from('Careers')
+    .delete()
+    .eq('slug', slug)
 
   if (error) throw error
 }

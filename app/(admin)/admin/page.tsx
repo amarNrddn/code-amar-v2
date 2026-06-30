@@ -6,20 +6,23 @@ import Link from 'next/link'
 interface Stats {
   blogs: number
   projects: number
+  careers: number
 }
 
 export default function AdminDashboard() {
-  const [stats, setStats] = useState<Stats>({ blogs: 0, projects: 0 })
+  const [stats, setStats] = useState<Stats>({ blogs: 0, projects: 0, careers: 0 })
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     Promise.all([
       fetch('/api/blog').then((r) => r.json()),
       fetch('/api/project').then((r) => r.json()),
-    ]).then(([blogs, projects]) => {
+      fetch('/api/career').then((r) => r.json()),
+    ]).then(([blogs, projects, careers]) => {
       setStats({
         blogs: blogs.data?.length || 0,
         projects: projects.data?.length || 0,
+        careers: careers.data?.length || 0,
       })
     }).finally(() => setLoading(false))
   }, [])
@@ -40,6 +43,10 @@ export default function AdminDashboard() {
           <Link href="/admin/projects" className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
             <p className="text-3xl font-bold text-gray-900">{stats.projects}</p>
             <p className="text-gray-500 mt-1">Projects</p>
+          </Link>
+          <Link href="/admin/careers" className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+            <p className="text-3xl font-bold text-gray-900">{stats.careers}</p>
+            <p className="text-gray-500 mt-1">Careers</p>
           </Link>
         </div>
       )}

@@ -1,18 +1,31 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import type { Career } from '@/lib/types'
 import HeaderSection from '@/components/atoms/HeaderSection'
 import BorderDot from '@/components/atoms/BorderDot'
 import Border from '@/components/atoms/Border'
 import { IoShareSocialSharp } from 'react-icons/io5'
-import { FaCode } from 'react-icons/fa'
+import { FaCode, FaBriefcase } from 'react-icons/fa'
 import Story from '@/components/About/Story'
 import MarqueeElement from '@/components/About/MarqueeElement'
 import SocialMedia from '@/components/About/SocialMedia'
+import CareerCard from '@/components/Career/Card'
 import { useLanguage } from '@/context/LanguageProvider'
 
 export default function About() {
   const { t } = useLanguage()
+  const [careers, setCareers] = useState<Career[]>([])
+
+  useEffect(() => {
+    fetch('/api/career')
+      .then((r) => r.json())
+      .then((res) => {
+        if (res.data) setCareers(res.data as Career[])
+      })
+      .catch((e) => console.error('Fetch careers error:', e))
+  }, [])
 
   return (
     <motion.div
@@ -28,6 +41,13 @@ export default function About() {
       <p className="mt-5 text-gray-500">{t('about.desc')}</p>
       <BorderDot className="my-6" />
       <Story />
+      <Border className="my-6" />
+      <HeaderSection>
+        <FaBriefcase />
+        Career
+      </HeaderSection>
+      <p className="my-4 text-gray-500">Riwayat pekerjaan dan pengalaman profesional.</p>
+      <CareerCard careers={careers} />
       <Border className="my-6" />
       <HeaderSection>
         <FaCode />

@@ -43,6 +43,17 @@ export interface Feature {
   projectId: string
 }
 
+export interface Career {
+  id: string
+  title: string
+  thumbnail: string | null
+  company_description: string
+  period: string
+  responsibilities: string[]
+  slug: string
+  createdAt: string
+}
+
 export interface ApiResponse<T> {
   statusCode: number
   message: string
