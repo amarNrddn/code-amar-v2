@@ -45,20 +45,20 @@ function CareerItem({ career }: { career: Career }) {
   return (
     <Card
       onClick={() => router.push(`/career/${career.slug}`)}
-      className="flex h-max w-full cursor-pointer items-center gap-5 overflow-hidden rounded-l-sm rounded-r-xl border border-l-0 border-neutral-300 py-2 !shadow-none duration-500 hover:scale-[1.02] dark:border-neutral-600 dark:bg-gradient-to-br dark:from-neutral-900 dark:to-neutral-950"
+      className="flex h-max cursor-pointer items-center gap-5 overflow-hidden rounded-l-sm rounded-r-xl border border-l-0 border-neutral-300 py-2 !shadow-none duration-500 hover:scale-[1.02] dark:border-neutral-600 dark:bg-gradient-to-br dark:from-neutral-900 dark:to-neutral-950"
     >
       <div className="relative my-2 h-max">
-        <div className="flex items-center rounded-r-full border border-l-0 border-neutral-300 shadow-lg pl-3 pr-5 py-3 dark:border-neutral-600 dark:shadow-neutral-800">
+        <div className="inverted-image-left flex items-center rounded-r-full border border-l-0 border-neutral-300 shadow-lg pl-4 pr-6 py-4.5 dark:border-neutral-600 dark:shadow-neutral-800">
           {career.thumbnail ? (
             <img
               src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${career.thumbnail}`}
-              width={55}
-              height={55}
+              width={90}
+              height={90}
               alt={career.title}
-              className="relative z-10 w-[55px] h-[55px] object-contain rounded-full"
+              className="relative z-10 w-[90px] h-[90px] object-contain rounded-full"
             />
           ) : (
-            <CompanyIcon size={30} className="text-neutral-500 dark:text-neutral-400" />
+            <CompanyIcon size={50} className="text-neutral-500 dark:text-neutral-400" />
           )}
         </div>
       </div>
@@ -82,9 +82,9 @@ function CareerItem({ career }: { career: Career }) {
 }
 
 const SkeletonCard = () => (
-  <div className="flex h-max w-full items-center gap-5 rounded-xl border border-neutral-300 py-2 dark:border-neutral-600">
-    <div className="w-[85px] flex justify-center">
-      <div className="w-[55px] h-[55px] rounded-full dark:bg-gray-800 bg-gray-200" />
+  <div className="flex h-max items-center gap-5 rounded-xl border border-neutral-300 py-2 dark:border-neutral-600">
+    <div className="w-[100px] flex justify-center">
+      <div className="w-[70px] h-[70px] rounded-full dark:bg-gray-800 bg-gray-200" />
     </div>
     <div className="flex-1 pr-4 space-y-2">
       <div className="h-5 dark:bg-gray-800 bg-gray-200 rounded w-1/2" />
@@ -96,9 +96,9 @@ const SkeletonCard = () => (
 
 const CareerCard = ({ careers }: CareerCardProps) => {
   return (
-    <div className="w-full space-y-4">
+    <div className="grid gap-5 md:grid-cols-2">
       {careers.length === 0
-        ? [1, 2].map((i) => <SkeletonCard key={i} />)
+        ? [1, 2, 3, 4].map((i) => <SkeletonCard key={i} />)
         : careers.map((item) => <CareerItem key={item.id} career={item} />)}
     </div>
   )

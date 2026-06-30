@@ -42,12 +42,16 @@ export default function About() {
       <BorderDot className="my-6" />
       <Story />
       <Border className="my-6" />
-      <HeaderSection>
-        <FaBriefcase />
-        Career
-      </HeaderSection>
-      <p className="my-4 text-gray-500">Riwayat pekerjaan dan pengalaman profesional.</p>
-      <CareerCard careers={careers} />
+      <section className="space-y-6">
+        <div className="space-y-2">
+          <HeaderSection>
+            <FaBriefcase />
+            Career
+          </HeaderSection>
+          <p className="dark:text-neutral-400 text-gray-500">My professional career journey</p>
+        </div>
+        <CareerCard careers={careers} />
+      </section>
       <Border className="my-6" />
       <HeaderSection>
         <FaCode />
