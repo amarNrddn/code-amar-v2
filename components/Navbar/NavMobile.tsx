@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useRouter } from 'next/navigation'
 import Profile from '@/components/atoms/Profile'
 import TogleTheme from '@/components/atoms/TogleTheme'
 import TogleLanguage from '@/components/atoms/TogleLanguage'
@@ -11,7 +11,6 @@ import { navItems } from '@/constants/itemsNav'
 import { useLanguage } from '@/context/LanguageProvider'
 
 const NavMobile = () => {
-  const router = useRouter()
   const pathname = usePathname()
   const [togle, setTogle] = useState(false)
   const [active, setActive] = useState(pathname)
@@ -23,11 +22,8 @@ const NavMobile = () => {
     setActive(pathname)
   }, [pathname])
 
-  const handleNavigation = (path: string) => {
-    if (active !== path) {
-      router.push(path)
-      setTogle(false)
-    }
+  const handleNavigation = () => {
+    setTogle(false)
   }
 
   useEffect(() => {
@@ -67,18 +63,19 @@ const NavMobile = () => {
               <ul>
                 {navItems.map((item, i) => {
                   const key = item.navigation.toLowerCase()
+                  const isActiveItem = active === item.path
                   return (
-                    <li
-                      key={i}
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleNavigation(item.path) }}
-                      className={`text-lg flex items-center gap-2 mb-4 pl-2 ${active === item.path ? 'bg-gray-200 dark:bg-darkPrimary py-2 rounded-md' : ''}`}
-                      onClick={() => handleNavigation(item.path)}
-                      aria-label={t('nav.' + key)}
-                    >
-                      <p className="text-2xl font-medium">{item.icon}</p>
-                      <p className="text-lg">{t('nav.' + key)}</p>
+                    <li key={i}>
+                      <Link
+                        href={item.path}
+                        onClick={handleNavigation}
+                        aria-label={t('nav.' + key)}
+                        aria-current={isActiveItem ? 'page' : undefined}
+                        className={`text-lg flex items-center gap-2 mb-4 pl-2 ${isActiveItem ? 'bg-gray-200 dark:bg-darkPrimary py-2 rounded-md' : ''}`}
+                      >
+                        <span className="text-2xl font-medium">{item.icon}</span>
+                        <span className="text-lg">{t('nav.' + key)}</span>
+                      </Link>
                     </li>
                   )
                 })}

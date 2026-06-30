@@ -8,7 +8,7 @@ const Profile = () => {
     <div className="flex items-center">
       <Image
         src="/images/profile.webp"
-        alt="navprofile"
+        alt="Amar Nuruddin (codeamar)"
         width={48}
         height={48}
         className="rounded-full object-cover w-12 h-12"

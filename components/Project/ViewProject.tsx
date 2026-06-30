@@ -88,7 +88,7 @@ const ViewProject = () => {
               <img
                 src="/images/github-icon.svg"
                 className="w-5 dark:bg-white dark:rounded-full"
-                alt="github"
+                alt="GitHub"
               />
               <p className="text-gray-500 text-sm">Source Code</p>
             </a>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageProvider'
 
@@ -17,7 +17,6 @@ interface ItemNavDesktopProps {
 }
 
 const ItemNavDesktop = ({ isActive, navItems, hovered }: ItemNavDesktopProps) => {
-  const router = useRouter()
   const { t } = useLanguage()
 
   const styleNav = (item: NavItem) => {
@@ -47,39 +46,39 @@ const ItemNavDesktop = ({ isActive, navItems, hovered }: ItemNavDesktopProps) =>
     return { itemStyle, hoverStyle, iconStyle }
   }
 
-  return (
-    <ul className="space-y-4">
-      {navItems.map((item, i) => {
-        const { itemStyle, hoverStyle, iconStyle } = styleNav(item)
-        const key = item.navigation.toLowerCase()
+    return (
+      <ul className="space-y-4">
+        {navItems.map((item, i) => {
+          const { itemStyle, hoverStyle, iconStyle } = styleNav(item)
+          const key = item.navigation.toLowerCase()
+          const isActiveItem = isActive === item.path
 
-        return (
-          <li
-            key={i}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') router.push(item.path) }}
-            className={`flex items-center text-gray-500 space-x-4 cursor-pointer transition-all duration-300 ease-in-out ${itemStyle} ${hoverStyle}`}
-            onClick={() => router.push(item.path)}
-            aria-label={t('nav.' + key)}
-          >
-            <span className={`text-lg font-bold transition-colors duration-300 ${iconStyle}`}>
-              {item.icon}
-            </span>
+          return (
+            <li key={i}>
+              <Link
+                href={item.path}
+                aria-label={t('nav.' + key)}
+                aria-current={isActiveItem ? 'page' : undefined}
+                className={`flex items-center text-gray-500 space-x-4 cursor-pointer transition-all duration-300 ease-in-out ${itemStyle} ${hoverStyle}`}
+              >
+                <span className={`text-lg font-bold transition-colors duration-300 ${iconStyle}`}>
+                  {item.icon}
+                </span>
 
-            <motion.span
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: hovered ? 1 : 0, x: hovered ? 0 : 100 }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-              className="whitespace-nowrap"
-            >
-              {t('nav.' + key)}
-            </motion.span>
-          </li>
-        )
-      })}
-    </ul>
-  )
+                <motion.span
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: hovered ? 1 : 0, x: hovered ? 0 : 100 }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  className="whitespace-nowrap"
+                >
+                  {t('nav.' + key)}
+                </motion.span>
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
+    )
 }
 
 export default ItemNavDesktop

@@ -20,7 +20,7 @@ const ProfileSidebar = ({ hovered }: ProfileSidebarProps) => {
         <div className="w-10 h-10 rounded-full overflow-hidden shrink-0">
           <Image
             src="/images/profile.webp"
-            alt="Profile"
+            alt="Amar Nuruddin (codeamar)"
             width={40}
             height={40}
             className="w-full h-full object-cover"
@@ -74,7 +74,7 @@ const ProfileSidebar = ({ hovered }: ProfileSidebarProps) => {
         >
           <Image
             src="/images/profile.webp"
-            alt="Profile"
+            alt="Amar Nuruddin (codeamar)"
             width={80}
             height={80}
             className="w-20 h-20 rounded-full object-cover"
