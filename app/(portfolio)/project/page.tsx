@@ -12,6 +12,10 @@ export default function Project() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    document.title = 'Proyek | Amar Nuruddin'
+  }, [])
+
+  useEffect(() => {
     const fetchProjects = async () => {
       const { data, error } = await supabase
         .from('Projects')
@@ -47,6 +51,7 @@ export default function Project() {
         scale: { type: 'spring', stiffness: 300, damping: 20 },
       }}
     >
+      <h1 className="sr-only">Proyek Amar Nuruddin - Showcase dan Dokumentasi</h1>
       <Card projects={projects} />
     </motion.div>
   )

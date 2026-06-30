@@ -13,6 +13,10 @@ import { useLanguage } from '@/context/LanguageProvider'
 export default function Dashboard() {
   const { t } = useLanguage()
   const [chartLoaded, setChartLoaded] = useState(false)
+
+  useEffect(() => {
+    document.title = 'Dashboard | Amar Nuruddin'
+  }, [])
   const imgRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
@@ -33,6 +37,7 @@ export default function Dashboard() {
         },
       }}
     >
+      <h1 className="sr-only">Dashboard Amar Nuruddin - GitHub dan Roadmap</h1>
       <HeaderSection>{t('dashboard.title')}</HeaderSection>
       <p className="mt-5 text-gray-500">{t('dashboard.desc')}</p>
       <BorderDot className="my-6" />
