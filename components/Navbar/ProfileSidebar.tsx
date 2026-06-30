@@ -16,13 +16,17 @@ const ProfileSidebar = ({ hovered }: ProfileSidebarProps) => {
 
   if (!hovered) {
     return (
-      <Image
-        src="/images/profile.webp"
-        alt="Profile"
-        width={40}
-        height={40}
-        className="rounded-full object-cover mx-auto mt-4"
-      />
+      <div className="flex justify-center mt-4">
+        <div className="w-10 h-10 rounded-full overflow-hidden shrink-0">
+          <Image
+            src="/images/profile.webp"
+            alt="Profile"
+            width={40}
+            height={40}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
     )
   }
 
