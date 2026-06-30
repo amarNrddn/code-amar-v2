@@ -27,6 +27,10 @@ export default function Home() {
   const [cardLoaded, setCardLoaded] = useState(false)
 
   useEffect(() => {
+    document.title = 'Amar Nuruddin (@codeamar) | Frontend Developer & Software Engineer'
+  }, [])
+
+  useEffect(() => {
     if (!cardLoaded) return
 
     const scrollContainer = scrollContainerRef.current
@@ -69,6 +73,7 @@ export default function Home() {
         },
       }}
     >
+      <h1 className="sr-only">Amar Nuruddin - Frontend Developer &amp; Software Engineer</h1>
       <RunText />
       <Bio />
       <div>
@@ -76,7 +81,7 @@ export default function Home() {
         <div>
           <HeaderSection>
             <LuCalendarHeart />
-            <p>{t('home.articles')}</p>
+            <span>{t('home.articles')}</span>
           </HeaderSection>
           <div className="mt-4 md:flex md:justify-between md:items-center">
             <p className="text-md text-gray-500">{t('home.articlesFrom')}</p>
