@@ -19,6 +19,10 @@ export default function About() {
   const [careers, setCareers] = useState<Career[]>([])
 
   useEffect(() => {
+    document.title = 'Tentang Saya | Amar Nuruddin'
+  }, [])
+
+  useEffect(() => {
     fetch('/api/career')
       .then((r) => r.json())
       .then((res) => {
@@ -37,6 +41,7 @@ export default function About() {
         scale: { type: 'spring', stiffness: 300, damping: 20 },
       }}
     >
+      <h1 className="sr-only">Tentang Amar Nuruddin - Frontend Developer &amp; Software Engineer</h1>
       <HeaderSection>{t('about.title')}</HeaderSection>
       <p className="mt-5 text-gray-500">{t('about.desc')}</p>
       <BorderDot className="my-6" />

@@ -20,6 +20,10 @@ export default function Blog() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    document.title = 'Blog | Amar Nuruddin'
+  }, [])
+
+  useEffect(() => {
     const fetchBlogs = async () => {
       const { data } = await supabase
         .from('Blogs')
@@ -43,6 +47,7 @@ export default function Blog() {
         scale: { type: 'spring', stiffness: 300, damping: 20 },
       }}
     >
+      <h1 className="sr-only">Blog Amar Nuruddin - Tutorial, Tips, dan Insight Teknologi</h1>
       <Card blogs={blogs} />
     </motion.div>
   )
