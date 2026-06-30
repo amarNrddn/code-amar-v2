@@ -35,6 +35,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Amar Nuruddin', url: siteUrl }],
   creator: 'Amar Nuruddin',
   publisher: 'Amar Nuruddin',
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || '',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
