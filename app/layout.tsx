@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     'Amar Nuruddin',
     'codeamar',
     'amarnrddn',
+    'Amar Palevi',
     'frontend developer',
     'software engineer',
     'web developer',
@@ -31,6 +32,8 @@ export const metadata: Metadata = {
     'React',
     'Next.js',
     'TypeScript',
+    'banjarnegara',
+    'indonesia',
   ],
   authors: [{ name: 'Amar Nuruddin', url: siteUrl }],
   creator: 'Amar Nuruddin',
@@ -141,6 +144,19 @@ export default function RootLayout({
     },
   }
 
+  const navItems = ['Home', 'About', 'Blog', 'Projects', 'Dashboard', 'Contact']
+
+  const navJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: navItems.map((name, i) => ({
+      '@type': 'SiteNavigationElement',
+      position: i + 1,
+      name,
+      url: `${siteUrl}${name === 'Home' ? '' : `/${name.toLowerCase()}`}`,
+    })),
+  }
+
   return (
     <html lang="en" className={isDark ? 'dark' : ''} suppressHydrationWarning>
       <head>
@@ -151,6 +167,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(navJsonLd) }}
         />
         <script dangerouslySetInnerHTML={{
           __html: `try{var t=localStorage.getItem('theme');if(!t){var m=document.cookie.match(/theme=([^;]+)/);t=m?m[1]:'light'}if(t==='dark'){document.documentElement.classList.add('dark')}}catch(e){}`
