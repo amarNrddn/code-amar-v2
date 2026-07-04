@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: {
-    default: 'Amar Nuruddin (@codeamar) | Frontend Developer & Software Engineer',
-    template: '%s | Amar Nuruddin',
+    default: 'CodeAmar | Amar Nuruddin - Frontend Developer & Software Engineer',
+    template: '%s | CodeAmar',
   },
   description:
     'Portofolio resmi Amar Nuruddin (codeamar / amarnrddn). Kreator web, pengembang frontend, dan pembagi insight seputar teknologi.',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'Amar Nuruddin',
+    siteName: 'CodeAmar',
     title: 'Amar Nuruddin (@codeamar) | Frontend Developer & Software Engineer',
     description:
       'Portofolio resmi Amar Nuruddin (codeamar / amarnrddn). Kreator web, pengembang frontend, dan pembagi insight seputar teknologi.',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Amar Nuruddin (@codeamar) | Frontend Developer & Software Engineer',
+    title: 'CodeAmar | Amar Nuruddin - Frontend Developer & Software Engineer',
     description:
       'Portofolio resmi Amar Nuruddin (codeamar / amarnrddn). Kreator web, pengembang frontend, dan pembagi insight seputar teknologi.',
     images: [`${siteUrl}/images/profile.webp`],
