@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import ViewCareer from '@/components/Career/ViewCareer'
+import BreadcrumbJsonLd from '@/components/atoms/BreadcrumbJsonLd'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://codeamar.vercel.app'
 
@@ -48,5 +49,16 @@ export async function generateMetadata({
 }
 
 export default function CareerDetail() {
-  return <ViewCareer />
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'About', path: '/about' },
+          { name: 'Karir', path: '' },
+        ]}
+      />
+      <ViewCareer />
+    </>
+  )
 }
