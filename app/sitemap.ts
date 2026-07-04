@@ -3,6 +3,8 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://codeamar.vercel.app'
 
+export const dynamic = 'force-dynamic'
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
     { path: '', lastModified: new Date(), priority: 1.0 },
