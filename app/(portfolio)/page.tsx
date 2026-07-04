@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, Suspense } from 'react'
 import dynamic from 'next/dynamic'
+import CardService from '@/components/CardServices/CardService'
 import { motion } from 'framer-motion'
 import { LuCalendarHeart } from 'react-icons/lu'
 import { RiServiceFill } from 'react-icons/ri'
@@ -14,10 +15,6 @@ import HeaderSection from '@/components/atoms/HeaderSection'
 import { useLanguage } from '@/context/LanguageProvider'
 
 const CardArticel = dynamic(() => import('@/components/Home/CardArticel'), {
-  loading: () => <LoadingCard />,
-})
-
-const CardService = dynamic(() => import('@/components/CardServices/CardService'), {
   loading: () => <LoadingCard />,
 })
 
@@ -106,9 +103,7 @@ export default function Home() {
           </HeaderSection>
           <p className="text-gray-500 mt-2">{t('home.servicesDesc')}</p>
         </div>
-        <Suspense fallback={<LoadingCard />}>
-          <CardService />
-        </Suspense>
+        <CardService />
       </div>
     </motion.div>
   )
