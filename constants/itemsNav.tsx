@@ -3,6 +3,7 @@ import { TbCameraBolt } from 'react-icons/tb'
 import { LuPenLine } from 'react-icons/lu'
 import { TiShoppingBag } from 'react-icons/ti'
 import { LuLayoutDashboard } from 'react-icons/lu'
+import { IoMailOutline } from 'react-icons/io5'
 
 export const navItems = [
   {
@@ -29,5 +30,10 @@ export const navItems = [
     icon: <LuLayoutDashboard />,
     path: '/dashboard',
     navigation: 'Dashboard',
+  },
+  {
+    icon: <IoMailOutline />,
+    path: '/contact',
+    navigation: 'Contact',
   },
 ]

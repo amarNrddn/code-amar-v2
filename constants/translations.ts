@@ -6,6 +6,7 @@ const translations: Record<string, Record<string, string>> = {
     'nav.projects': 'Projects',
     'nav.dashboard': 'Dashboard',
     'nav.hire': 'Hire me.',
+    'nav.contact': 'Contact',
     'nav.name': 'Amar Nuruddin',
     'nav.username': '@codeamar',
 
@@ -100,6 +101,7 @@ const translations: Record<string, Record<string, string>> = {
     'nav.projects': 'Proyek',
     'nav.dashboard': 'Dasbor',
     'nav.hire': 'Hire me.',
+    'nav.contact': 'Kontak',
     'nav.name': 'Amar Nuruddin',
     'nav.username': '@codeamar',
 
