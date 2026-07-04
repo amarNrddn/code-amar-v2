@@ -1,58 +1,34 @@
-'use client'
+import type { Metadata } from 'next'
+import ProjectClient from './ProjectClient'
 
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-import { supabase } from '@/lib/supabase'
-import type { Project } from '@/lib/types'
-import Card from '@/components/Project/Card'
-import Loading from '@/components/atoms/Loading'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://codeamar.vercel.app'
 
-export default function Project() {
-  const [projects, setProjects] = useState<Project[]>([])
-  const [loading, setLoading] = useState(true)
+export const metadata: Metadata = {
+  title: 'Projects',
+  description:
+    'Lihat proyek-proyek Amar Nuruddin (codeamar) — showcase dan dokumentasi project frontend, fullstack, dan mobile development.',
+  openGraph: {
+    title: 'Projects | Amar Nuruddin',
+    description:
+      'Lihat proyek-proyek Amar Nuruddin (codeamar) — showcase dan dokumentasi project.',
+    url: `${siteUrl}/project`,
+    images: [
+      {
+        url: `${siteUrl}/images/profile.webp`,
+        width: 400,
+        height: 400,
+        alt: 'Amar Nuruddin (codeamar)',
+      },
+    ],
+  },
+  twitter: {
+    title: 'Projects | Amar Nuruddin',
+    description:
+      'Lihat proyek-proyek Amar Nuruddin (codeamar) — showcase dan dokumentasi project.',
+    images: [`${siteUrl}/images/profile.webp`],
+  },
+}
 
-  useEffect(() => {
-    document.title = 'Proyek | Amar Nuruddin'
-  }, [])
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      const { data, error } = await supabase
-        .from('Projects')
-        .select('*, Techstacks(*), Features(*)')
-        .order('createdAt', { ascending: false })
-
-      if (error) {
-        console.error('Supabase Projects error:', error)
-      }
-
-      if (data) {
-        const mapped = data.map((item: any) => ({
-          ...item,
-          techstacks: item.Techstacks || [],
-          features: item.Features || [],
-        }))
-        setProjects(mapped as Project[])
-      }
-      setLoading(false)
-    }
-    fetchProjects()
-  }, [])
-
-  if (loading) return <Loading />
-
-  return (
-    <motion.div
-      className="mt-4 md:mt-12 pb-10"
-      initial={{ opacity: 0, x: 100, scale: 0.8 }}
-      animate={{ opacity: 1, x: 0, scale: 1 }}
-      transition={{
-        ease: 'easeInOut',
-        scale: { type: 'spring', stiffness: 300, damping: 20 },
-      }}
-    >
-      <h1 className="sr-only">Proyek Amar Nuruddin - Showcase dan Dokumentasi</h1>
-      <Card projects={projects} />
-    </motion.div>
-  )
+export default function ProjectPage() {
+  return <ProjectClient />
 }
