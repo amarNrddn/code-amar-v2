@@ -10,10 +10,13 @@ const roboto = Roboto({
   display: 'swap',
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://codeamar.vercel.app'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://codeamar.my.id'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: '/',
+  },
   title: {
     default: 'Amar Nuruddin (@codeamar) | Frontend Developer & Software Engineer',
     template: '%s | Amar Nuruddin',

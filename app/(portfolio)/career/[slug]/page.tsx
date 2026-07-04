@@ -3,7 +3,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import ViewCareer from '@/components/Career/ViewCareer'
 import BreadcrumbJsonLd from '@/components/atoms/BreadcrumbJsonLd'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://codeamar.vercel.app'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://codeamar.my.id'
 
 export async function generateMetadata({
   params,

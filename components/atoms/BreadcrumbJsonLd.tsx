@@ -1,4 +1,4 @@
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://codeamar.vercel.app'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://codeamar.my.id'
 
 interface BreadcrumbItem {
   name: string

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import HomeClient from './HomeClient'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://codeamar.vercel.app'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://codeamar.my.id'
 
 export const metadata: Metadata = {
   description:
