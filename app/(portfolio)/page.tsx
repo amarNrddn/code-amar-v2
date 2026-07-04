@@ -4,7 +4,6 @@ import HomeClient from './HomeClient'
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://codeamar.vercel.app'
 
 export const metadata: Metadata = {
-  title: 'Amar Nuruddin (@codeamar) | Frontend Developer & Software Engineer',
   description:
     'Portofolio resmi Amar Nuruddin (codeamar / amarnrddn). Kreator web, pengembang frontend, dan pembagi insight seputar teknologi.',
   openGraph: {
