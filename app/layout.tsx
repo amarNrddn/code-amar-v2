@@ -82,11 +82,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: '/logo-amar-circle.svg', sizes: '192x192', type: 'image/svg+xml' },
       { url: '/logo-amar.png', sizes: '192x192', type: 'image/png' },
-      { url: '/logo-amar.png', sizes: '48x48' },
-      { url: '/logo-amar.svg', type: 'image/svg+xml' },
     ],
-    shortcut: '/logo-amar.png',
+    shortcut: '/logo-amar-circle.svg',
     apple: '/logo192.png',
   },
   manifest: '/manifest.json',
