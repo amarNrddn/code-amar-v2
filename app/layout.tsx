@@ -83,7 +83,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/logo-amar.png', sizes: '192x192', type: 'image/png' },
-      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/logo-amar.png', sizes: '48x48' },
       { url: '/logo-amar.svg', type: 'image/svg+xml' },
     ],
     shortcut: '/logo-amar.png',
