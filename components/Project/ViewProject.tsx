@@ -63,16 +63,16 @@ const ViewProject = () => {
       >
         {project.title}
       </motion.h1>
-      <p className="mt-3 text-gray-500 text-base">{project.description}</p>
+      <p className="mt-3 text-gray-500 text-base text-justify">{project.description}</p>
       <BorderDot className="my-5" />
 
       {project.techstacks && project.techstacks.length > 0 && (
-        <div className="w-full flex justify-between items-center mb-5">
-          <div>
+        <div className="mb-5">
+          <div className="flex flex-wrap gap-2 mb-3">
             {project.techstacks.map((tech) => (
               <span
                 key={tech.id}
-                className="mr-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-lg mb-2 inline-block text-sm"
+                className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-lg text-sm"
               >
                 {tech.techstack}
               </span>
@@ -80,7 +80,7 @@ const ViewProject = () => {
           </div>
           {project.linksourcode && (
             <a
-              className="flex items-center gap-2 shrink-0"
+              className="flex items-center gap-2 w-fit"
               href={project.linksourcode}
               target="_blank"
               rel="noreferrer"
@@ -109,7 +109,7 @@ const ViewProject = () => {
       {project.introduction && (
         <div className="mt-9">
           <h1 className="font-bold text-lg">{t('view.introduction')}</h1>
-          <p className="mt-4 text-base leading-loose text-gray-600 dark:text-gray-400">
+          <p className="mt-4 text-base leading-loose text-gray-600 dark:text-gray-400 text-justify">
             {project.introduction}
           </p>
         </div>
@@ -122,7 +122,7 @@ const ViewProject = () => {
             {project.features.map((feature) => (
               <div key={feature.id}>
                 <h3 className="font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
+                <p className="text-gray-600 dark:text-gray-400 text-justify">{feature.description}</p>
               </div>
             ))}
           </div>
