@@ -59,7 +59,7 @@ const Card = ({ projects }: CardProps) => {
                   <p className="text-sm text-gray-500 mt-2 line-clamp-2">{item.description}</p>
                   {item.techstacks && item.techstacks.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-3">
-                      {item.techstacks.map((tech: any) => (
+                      {item.techstacks.slice(0, 6).map((tech: any) => (
                         <span
                           key={tech.id}
                           className="text-xs px-2 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300"
@@ -67,6 +67,11 @@ const Card = ({ projects }: CardProps) => {
                           {tech.techstack}
                         </span>
                       ))}
+                      {item.techstacks.length > 6 && (
+                        <span className="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                          +{item.techstacks.length - 6} more
+                        </span>
+                      )}
                     </div>
                   )}
                 </div>
