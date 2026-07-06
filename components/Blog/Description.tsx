@@ -11,7 +11,7 @@ const Description = ({ blog }: { blog: Blog }) => {
   return (
     <div className="mt-7">
       <h1 className="font-bold text-xl mb-2">{t('blogView.solution')}</h1>
-      <p className="dark:text-white text-gray-500">
+      <p className="dark:text-white text-gray-500 text-justify">
         {blog.solution}
       </p>
     </div>

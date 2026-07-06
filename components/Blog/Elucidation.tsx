@@ -11,7 +11,7 @@ const Elucidation = ({ blog }: { blog: Blog }) => {
   return (
     <div className="mt-7">
       <h1 className="font-bold text-xl mb-2">{t('blogView.elucidation')}</h1>
-      <p className="dark:text-white text-gray-500">
+      <p className="dark:text-white text-gray-500 text-justify">
         {blog.elucidation}
       </p>
     </div>
