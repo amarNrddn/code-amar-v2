@@ -49,7 +49,7 @@ const Card = ({ projects }: CardProps) => {
                   <div className="w-full h-64 md:h-72 relative overflow-hidden">
                     <ImageLazy
                       image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/thumbnails/${item.thumbnail}`}
-                      className="object-cover"
+                      className="object-contain"
                       alt={item.title}
                     />
                   </div>
