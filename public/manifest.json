@@ -3,7 +3,7 @@
   "name": "Amar Nuruddin | Frontend Developer & Software Engineer",
   "description": "Portofolio resmi Amar Nuruddin (codeamar). Kreator web, pengembang frontend, dan pembagi insight seputar teknologi.",
   "start_url": "/",
-  "display": "standalone",
+  "display": "browser",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "icons": [
