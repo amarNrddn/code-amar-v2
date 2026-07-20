@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://codeamar.my.id</loc><lastmod>2026-07-20</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+<url><loc>https://codeamar.my.id/about</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://codeamar.my.id/blog</loc><lastmod>2026-07-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+<url><loc>https://codeamar.my.id/project</loc><lastmod>2026-07-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+<url><loc>https://codeamar.my.id/dashboard</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+<url><loc>https://codeamar.my.id/contact</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://codeamar.my.id/artikel/building-restful-apis-with-expressjs-a7b8c9d0</loc><lastmod>2026-06-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://codeamar.my.id/artikel/menjinakkan-state-kompleks-react-hooks</loc><lastmod>2026-06-27</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://codeamar.my.id/artikel/introduction-to-database-design-with-mysql-a7b8c9d0</loc><lastmod>2026-06-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://codeamar.my.id/artikel/optimasi-seo-nextjs-google-search-console-vercel</loc><lastmod>2026-07-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://codeamar.my.id/project/sistem-rekomendasi-jurusan-smk-knn-nlp</loc><lastmod>2026-07-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://codeamar.my.id/project/codeamar-portfolio-blog-website</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://codeamar.my.id/project/wargacek-crowdsourcing-pelaporan-isu-kota</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://codeamar.my.id/project/cms-penjualan-tiket-online</loc><lastmod>2026-07-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://codeamar.my.id/project/undanganvas</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://codeamar.my.id/project/sparkling-admin-dashboard</loc><lastmod>2026-07-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://codeamar.my.id/career/zlaepik-std-323</loc><lastmod>2026-06-30</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+<url><loc>https://codeamar.my.id/career/bangkit-academy345</loc><lastmod>2026-06-30</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+<url><loc>https://codeamar.my.id/career/pompa-dex-indoguna</loc><lastmod>2026-06-30</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+</urlset>
