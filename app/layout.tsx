@@ -87,7 +87,7 @@ export const metadata: Metadata = {
       { url: '/logo-amar.png', sizes: '192x192', type: 'image/png' },
     ],
     shortcut: '/logo-amar.ico',
-    apple: '/logo192.png',
+    apple: '/logo-amar.png',
   },
   manifest: '/manifest.json',
 }
